@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ka">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>კატალოგი — mypoker.ge</title>
+  <meta name="description" content="mypoker.ge-ის სრული კატალოგი: პოკერის ჩიპები, კარტები, მაგიდები, აქსესუარები და სამაგიდო თამაშები.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Georgian:wdth,wght@62.5..100,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/catalog.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e0142c'/%3E%3Cpath fill='%23fff' d='M50 22 70 50 50 78 30 50Z'/%3E%3C/svg%3E">
+</head>
+<body class="cat-page">
+<a class="skip" href="#grid">Skip</a>
+
+<header class="hud">
+  <a class="hud__logo" href="./" aria-label="mypoker.ge"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 86 50 50 96 14 50Z"/></svg>MYPOKER.GE</a>
+  <nav class="hud__links" aria-label="Main">
+    <a class="paren" href="./" data-t="home">მთავარი</a>
+    <button class="paren" type="button" data-open-cart><span data-t="cart">კალათა</span> <span data-cart-n>0</span></button>
+    <span class="hud__lang hide-m"><button type="button" data-lang="ka">ქარ</button> / <button type="button" data-lang="en">EN</button></span>
+    <a class="hide-m" href="tel:+995555123456">+995 555 12 34 56</a>
+  </nav>
+</header>
+
+<main>
+  <header class="chead">
+    <h1 class="tri d"><span>Full</span><span>Catalog</span><span data-total>17.</span></h1>
+  </header>
+
+  <div class="bar" data-bar>
+    <nav class="bar__cats mono" data-cats aria-label="კატეგორიები"></nav>
+    <div class="bar__row mono">
+      <div class="bar__prices" data-prices role="radiogroup" aria-label="ფასი"></div>
+      <label class="bar__search"><span class="sr" data-t="search">ძებნა</span><input type="search" data-search autocomplete="off" placeholder="(search)"></label>
+      <label class="bar__sort"><span class="sr">Sort</span>
+        <select data-sort>
+          <option value="rec" data-t="sortRec">რეკომენდებული</option>
+          <option value="asc" data-t="sortAsc">ფასი ↑</option>
+          <option value="desc" data-t="sortDesc">ფასი ↓</option>
+        </select>
+      </label>
+      <p class="bar__count" data-count>(17/17)</p>
+    </div>
+  </div>
+
+  <ul class="grid" id="grid" data-grid></ul>
+  <div class="empty" data-empty hidden>
+    <p class="d" data-t="emptyTitle">ვერაფერი მოიძებნა.</p>
+    <button class="paren" type="button" data-reset data-t="emptyReset">ფილტრების გასუფთავება</button>
+  </div>
+
+  <footer class="cfoot mono">
+    <a class="paren" href="./" data-t="home">მთავარი</a>
+    <span>+995 555 12 34 56</span>
+    <span data-t="ship">უფასო მიწოდება თბილისში 80 ₾-დან</span>
+    <span>© <span data-year>2026</span> mypoker.ge</span>
+  </footer>
+</main>
+
+<!-- product quick view -->
+<div class="qv" data-qv hidden role="dialog" aria-modal="true" aria-labelledby="qv-name">
+  <div class="qv__box">
+    <button class="paren qv__x" type="button" data-qv-close>close</button>
+    <div class="qv__img"><i></i><i></i><i></i><i></i><img data-qv-img alt=""></div>
+    <div class="qv__info">
+      <p class="mono qv__fig" data-qv-fig></p>
+      <h2 class="qv__name" id="qv-name" data-qv-name></h2>
+      <p class="mono qv__spec" data-qv-spec></p>
+      <p class="qv__price d" data-qv-price></p>
+      <div class="qv__actions">
+        <button class="btn btn--lime btn--big" type="button" data-qv-add data-t="add">კალათაში</button>
+        <a class="btn btn--line btn--big" href="tel:+995555123456" data-t="call">დარეკვა</a>
+      </div>
+      <p class="mono qv__note" data-t="qvNote">მიწოდება თბილისში მეორე დღეს. გადახდა მიღებისას.</p>
+    </div>
+  </div>
+</div>
+
+<div class="scrim" data-scrim hidden></div>
+<aside class="cart" data-cart aria-label="Cart" aria-hidden="true" tabindex="-1">
+  <header class="cart__head"><h2 data-t="cart">კალათა</h2><button class="paren" type="button" data-close-cart>close</button></header>
+  <div class="cart__free"><p data-free-text></p><div class="cart__bar"><i data-free-bar></i></div></div>
+  <ul class="cart__items" data-cart-items></ul>
+  <div class="cart__empty" data-cart-empty><p data-t="cartEmpty">კალათა ცარიელია.</p><button class="btn btn--lime" type="button" data-close-cart data-t="toCatalog">კატალოგის ნახვა</button></div>
+  <div class="cart__done" data-done hidden><b data-t="doneTitle">შეკვეთა მიღებულია.</b><p data-t="doneText"></p></div>
+  <form class="cart__form" data-checkout hidden novalidate>
+    <label><span data-t="fName">სახელი</span><input name="name" autocomplete="name"></label>
+    <label><span data-t="fPhone">ტელეფონი</span><input name="phone" type="tel" autocomplete="tel" placeholder="+995 5__ __ __ __"></label>
+    <label><span data-t="fAddr">მისამართი</span><input name="addr" autocomplete="street-address"></label>
+    <p class="cart__err" data-err role="alert"></p>
+  </form>
+  <footer class="cart__foot" data-cart-foot hidden>
+    <p class="cart__sum"><span data-t="total">ჯამი</span><b data-cart-total>0 ₾</b></p>
+    <button class="btn btn--lime btn--big" type="button" data-checkout-btn>შეკვეთის გაფორმება</button>
+  </footer>
+</aside>
+<p class="toast" data-toast role="status" aria-live="polite"></p>
+
+<script src="js/products.js" defer></script>
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/vendor/Flip.min.js" defer></script>
+<script src="assets/vendor/lenis.min.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/catalog.js" defer></script>
+</body>
+</html>

@@ -1,27 +1,31 @@
 # mypoker.ge — redesign
 
-Static shop page (HTML / CSS / vanilla JS), no build step. Deployed to
-GitHub Pages by `.github/workflows/pages.yml` on every push.
+Static site, no build step. Two pages:
+
+- `index.html`: home, built scene by scene after the reference video
+  (draggable "LOG" field, Game Night Chain with particle dissolve, lime-smoke
+  Effects, All-in parallax collage, Setup Archives, Table Kit labels,
+  flashlight Game Procedures).
+- `catalog.html`: full catalogue with a sticky filter bar on top
+  (category, price, search, sort), Flip-animated grid, quick view and cart.
 
 ```
-index.html          markup (Georgian, with EN toggle)
-css/style.css       design tokens, layout, responsive rules
-js/products.js      catalogue: categories and 17 products (names, specs, prices)
-js/main.js          catalogue filters/sort/search, cart, hero drag cards,
-                    table-set hotspots, flashlight steps, i18n
-assets/img/         product photos and scene (generated with Kling AI)
-assets/video/       lime-smoke and card-shuffle loops (generated with Kling AI)
+css/base.css      tokens, HUD, cart drawer (shared)
+css/home.css      home scenes
+css/catalog.css   catalogue
+js/products.js    categories and products (edit prices and names here)
+js/common.js      language, cart, smooth scroll (Lenis + GSAP ScrollTrigger)
+js/home.js        home interactions
+js/catalog.js     filters, grid animation, quick view
+assets/img/p/     product cut-outs on white (Kling AI)
+assets/img/...    lifestyle, setups, steps, scene (Kling AI)
+assets/video/     lime smoke, shuffle, all-in (Kling AI)
+assets/vendor/    gsap, ScrollTrigger, Flip, lenis (bundled locally)
 ```
 
-Run locally: `python3 -m http.server` and open http://localhost:8000.
-
-## Editing
-- Products and prices: `js/products.js`. Images are `assets/img/products/<id>.webp`.
-- Interface text (KA/EN): the `T` dictionary at the top of `js/main.js`.
-- Hero cards: `HERO`; table-set labels: `SET` (positions in % of the image).
+Deployed to GitHub Pages by `.github/workflows/pages.yml` on pushes to `main`.
 
 ## Not wired yet
-- Checkout only validates the form and shows a confirmation. Connect it to
-  email, a CRM or the existing mypoker.ge backend before going live.
-- The 9 products that were not visible in the old page screenshot are
-  placeholders; replace them with the real catalogue.
+- Checkout validates the form and shows a confirmation, but does not send the
+  order anywhere. Connect it to email, a CRM or the shop backend.
+- Products not visible in the old page screenshot are placeholders.
