@@ -23,11 +23,9 @@
 .bar__tools { display: flex; align-items: center; gap: 10px; }
 .bar__search { position: relative; flex: 1 1 320px; max-width: 420px; display: flex; align-items: center; }
 .bar__search svg { position: absolute; left: 13px; width: 18px; height: 18px; fill: none; stroke: #6d7169; stroke-width: 1.8; stroke-linecap: round; pointer-events: none; }
-.bar__search input { width: 100%; height: 44px; padding: 0 40px 0 40px; border: 1px solid #cfd1cb; border-radius: 6px; background: #fff; font-family: var(--f-text); font-size: 14px; transition: border-color var(--m-150), box-shadow var(--m-150); }
+.bar__search input { width: 100%; height: 44px; padding: 0 14px 0 40px; border: 1px solid #cfd1cb; border-radius: 6px; background: #fff; font-family: var(--f-text); font-size: 14px; transition: border-color var(--m-150), box-shadow var(--m-150); }
 .bar__search input::placeholder { color: #8a8e86; }
 .bar__search input:focus { outline: 0; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(170, 180, 126, .45); }
-.bar__search kbd { position: absolute; right: 10px; padding: 1px 6px; border: 1px solid #d6d8d2; border-radius: 4px; font-family: var(--f-mono); font-size: 11px; color: #8a8e86; pointer-events: none; }
-.bar__search input:focus ~ kbd, .bar__search input:not(:placeholder-shown) ~ kbd { display: none; }
 
 .bar__filter { position: relative; }
 .bar__btn, .bar__sort select { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border: 1px solid #cfd1cb; border-radius: 6px; background: #fff; color: var(--ink); font-family: var(--f-text); font-size: 14px; font-weight: 500; transition: border-color var(--m-150); }
@@ -116,8 +114,7 @@
   .chip:not(.chip--sep) { height: 36px; padding: 0 14px; font-size: 13px; }
   .bar__tools { flex-wrap: wrap; gap: 8px; }
   .bar__search { flex: 1 1 100%; max-width: none; }
-  .bar__search kbd { display: none; }
-  .bar__search input, .bar__btn, .bar__sort select { height: 40px; }
+    .bar__search input, .bar__btn, .bar__sort select { height: 40px; }
   .bar__sort > span { display: none; }
   .bar__count { display: none; }
   .bar__sort { flex: 1; }
