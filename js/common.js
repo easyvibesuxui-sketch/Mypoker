@@ -19,7 +19,7 @@
   let lang = store.get("mp-lang", "ka");
   const T = {
     ka: {
-      catalog: "კატალოგი", cart: "კალათა", scroll: "(scroll down)", add: "კალათაში", added: "დამატებულია",
+      catalog: "კატალოგი", cart: "კალათა", callUs: "დარეკე და შეუკვეთე", scroll: "(scroll down)", add: "კალათაში", added: "დამატებულია",
       cartEmpty: "კალათა ცარიელია.", toCatalog: "კატალოგის ნახვა", total: "ჯამი", checkout: "შეკვეთის გაფორმება", confirm: "შეკვეთის დადასტურება",
       fName: "სახელი", fPhone: "ტელეფონი", fAddr: "მისამართი", formErr: "შეავსე სახელი, სწორი ნომერი და მისამართი.",
       doneTitle: "შეკვეთა მიღებულია.", doneText: "15 წუთში დაგირეკავთ დასადასტურებლად.",
@@ -27,7 +27,7 @@
       inCart: (n) => `${n} კალათაშია`,
     },
     en: {
-      catalog: "Catalog", cart: "Cart", scroll: "(scroll down)", add: "Add to cart", added: "Added",
+      catalog: "Catalog", cart: "Cart", callUs: "Call to order", scroll: "(scroll down)", add: "Add to cart", added: "Added",
       cartEmpty: "Your cart is empty.", toCatalog: "Browse the catalog", total: "Total", checkout: "Checkout", confirm: "Confirm order",
       fName: "Name", fPhone: "Phone", fAddr: "Address", formErr: "Enter your name, a valid number and an address.",
       doneTitle: "Order received.", doneText: "We will call within 15 minutes to confirm.",

@@ -137,6 +137,6 @@
     renderBar();
     buildGrid();
     applyFilter(false);
-    if (!built) { built = true; intro(); }
+    if (!built) { built = true; intro(); const pid = params.get("p"); if (pid && byId[pid]) { state.cat = byId[pid].cat; renderBar(); applyFilter(false); setTimeout(() => openQV(pid), 500); } }
   });
 })();

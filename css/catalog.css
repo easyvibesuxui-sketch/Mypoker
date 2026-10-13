@@ -1,12 +1,12 @@
 /* mypoker.ge — catalog page. Header row + sticky filter bar above a hairline grid. */
 
-.chead { padding-top: 44px; }
+.chead { padding-top: 72px; }
 .tri { display: grid; grid-template-columns: repeat(3, 1fr); font-size: clamp(40px, 6.4vw, 120px); color: var(--grey); border-bottom: 1px solid var(--line); }
 .tri span { padding: 0 var(--g) 6px; overflow: hidden; }
 .tri span:last-child { border-left: 1px solid var(--line); }
 
 /* filter bar */
-.bar { position: sticky; top: 0; z-index: 40; background: rgba(255, 255, 255, .94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); padding-top: 38px; }
+.bar { position: sticky; top: 66px; z-index: 40; background: rgba(255, 255, 255, .94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); padding-top: 10px; }
 .bar__cats { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding: 0 var(--g) 10px; }
 .bar__cats::-webkit-scrollbar { display: none; }
 .chip { position: relative; flex: 0 0 auto; display: inline-flex; align-items: baseline; gap: 6px; padding: 8px 12px 8px 12px; border: 0; background: none; font-family: var(--f-mono); font-size: 12px; color: #9aa2a9; white-space: nowrap; transition: color var(--m-150) var(--ease-out), padding var(--m-200) var(--ease-out); }
@@ -80,9 +80,9 @@
 
 @media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 760px) {
-  .chead { padding-top: 40px; }
+  .chead { padding-top: 60px; }
   .tri { font-size: clamp(30px, 10vw, 54px); }
-  .bar { padding-top: 34px; }
+  .bar { top: 56px; padding-top: 8px; }
   .bar__row { flex-wrap: wrap; gap: 8px; }
   .bar__prices { width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .bar__search { margin-left: 0; flex: 1; }

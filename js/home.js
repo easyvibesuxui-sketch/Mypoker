@@ -41,9 +41,68 @@
   const tt = (k, ...a) => { const v = TT[MP.lang][k]; return typeof v === "function" ? v(...a) : v; };
   function applyTT() { $$("[data-tt]").forEach((el) => { const v = TT[MP.lang][el.dataset.tt]; if (typeof v === "string") el.innerHTML = v; }); }
 
-  /* ── 0. wordmark parallax ─────────────────────────────── */
+  /* ── 0. HERO: texture grid + glitching wordmark ─────────────────────────────── */
+  const TEX = [
+    ["t01", "table-oval", "LOT-01-FELT"], ["t02", "chips-500", "LOT-02-CLAY"], ["t03", "bicycle", "LOT-03-BACK"], ["t04", "ceramic-300", "LOT-04-CERAMIC"], ["t05", "dice", "LOT-05-DICE"],
+    ["t06", "nardi", "LOT-06-WALNUT"], ["t07", "table-oval", "LOT-07-RAIL"], ["t08", "chips-500", "LOT-08-ALU"], ["t09", "dealer-button", "LOT-09-ACRYLIC"], ["t10", "copag", "LOT-10-ACE"],
+    ["t11", "jumbo-12", "LOT-11-DECK"], ["t12", "table-octagon", "LOT-12-FELT-RD"], ["t13", "chess", "LOT-13-CHESS"], ["t14", "domino", "LOT-14-DOMINO"], ["t15", "chips-200", "LOT-15-STACK"],
+  ];
+  const HTXT = {
+    ka: ["თამაშის ღამის ყველაზე სასურველი აღჭურვილობა.", "შერჩეული. შემოწმებული. მიწოდებული. რაც თამაშს ჰგავს, რიტუალივით მოძრაობს."],
+    en: ["The game night's most wanted gear.", "Shuffled. Stacked. Delivered. What looks like a game moves like a ritual."],
+  };
+  const hgrid = $("[data-hgrid]");
+  function renderHero() {
+    const cells = [];
+    TEX.forEach(([t, id, code], i) => {
+      const p = byId[id];
+      cells.push(`<a class="hc" href="catalog.html?p=${id}" style="grid-row:${Math.floor(i / 5) + 1};grid-column:${(i % 5) + 1}" aria-label="${MP.pname(p)}, ${money(p.price)}">
+        <span class="hc__n" data-n="(${String(i + 1).padStart(2, "0")})">(${String(i + 1).padStart(2, "0")})</span>
+        <figure class="hc__fig"><img class="hc__img" src="assets/img/tex/${t}.webp" alt="" loading="${i < 10 ? "eager" : "lazy"}"><i></i><i></i><i></i><i></i></figure>
+        <span class="hc__cap"><span>${code}</span><b>${money(p.price)}</b></span></a>`);
+    });
+    const tx = HTXT[MP.lang];
+    cells.push(`<div class="hc hc--txt hc--last" style="grid-row:1;grid-column:6"><p>${tx[0]}</p></div>`);
+    cells.push(`<div class="hc hc--txt" style="grid-row:2;grid-column:6"></div>`);
+    cells.push(`<div class="hc hc--txt" style="grid-row:3;grid-column:6"><p>${tx[1]}</p></div>`);
+    hgrid.innerHTML = cells.join("");
+    if (hasGsap && !reduced && !renderHero.done) {
+      renderHero.done = true;
+      gsap.from(".hc__fig", { opacity: 0, scale: .6, duration: .9, ease: "expo.out", stagger: { each: .04, from: "random" }, delay: .1 });
+      gsap.from(".hero__word", { yPercent: 40, opacity: 0, duration: 1.2, ease: "expo.out", delay: .2 });
+    }
+  }
+  // number labels flicker like the reference
+  if (!reduced) setInterval(() => {
+    const ns = $$(".hc__n");
+    if (!ns.length) return;
+    const el = ns[(Math.random() * ns.length) | 0];
+    MP.scramble(el, el.dataset.n);
+  }, 420);
+  // wordmark glitches between Latin and Georgian script
+  const word = $("[data-word]");
+  const WORDS = ["MyPoker.ge", "მაიპოკერი"];
+  let wi = 0;
+  function glitchTo(text) {
+    if (reduced) { word.textContent = text; return; }
+    const pool = "MYPOKERGEმაიპოკერი";
+    let f = 0;
+    const tick = () => {
+      f++;
+      const n = Math.floor(f / 2);
+      word.textContent = text.split("").map((c, k) => (k < n ? c : pool[(Math.random() * pool.length) | 0])).join("").slice(0, Math.max(text.length, 1));
+      if (n < text.length) requestAnimationFrame(tick); else word.textContent = text;
+    };
+    tick();
+  }
+  setInterval(() => { if (document.hidden) return; wi = 1 - wi; glitchTo(WORDS[wi]); if (wi === 1) setTimeout(() => { wi = 0; glitchTo(WORDS[0]); }, 1600); }, 6000);
+  // touch screens have no hover: highlight one cell at a time
+  if (matchMedia("(hover: none)").matches && !reduced) {
+    let k = 0;
+    setInterval(() => { const c = $$(".hc:not(.hc--txt)"); c.forEach((x) => x.classList.remove("is-on")); c[k++ % c.length]?.classList.add("is-on"); }, 2200);
+  }
   if (hasGsap && !reduced) {
-    gsap.to(".mark__word", { yPercent: 28, ease: "none", scrollTrigger: { trigger: ".mark", start: "top top", end: "bottom top", scrub: true } });
+    gsap.to(".hero__word", { yPercent: -18, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   }
 
   /* ── 1. LOG: draggable field ─────────────────────────────── */
@@ -396,6 +455,7 @@
   /* ── language ─────────────────────────────── */
   MP.onLang(() => {
     applyTT();
+    renderHero();
     renderLog();
     renderKit();
     const p = phase; phase = -1; setPhase(Math.max(0, p));

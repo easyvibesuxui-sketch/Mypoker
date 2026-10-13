@@ -2,7 +2,7 @@
 
 Static site, no build step. Two pages:
 
-- `index.html`: home, built scene by scene after the reference video
+- `index.html`: home. Opens with the texture-grid hero (15 macro textures that expand to colour on hover, glitching MyPoker.ge / მაიპოკერი wordmark), then the scenes built after the reference video
   (draggable "LOG" field, Game Night Chain with particle dissolve, lime-smoke
   Effects, All-in parallax collage, Setup Archives, Table Kit labels,
   flashlight Game Procedures).
