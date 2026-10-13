@@ -50,19 +50,20 @@
 
   /* grid: every product is rendered once; filtering toggles visibility so Flip can animate */
   const grid = $("[data-grid]");
-  const cartIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.2l2.1 10.4a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.1"/><path d="M15 3.5v5M12.5 6h5"/><circle cx="9.5" cy="20" r=".6"/><circle cx="17" cy="20" r=".6"/></svg>`;
+  const cartIcon = `<svg class="i-add" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.2l2.1 10.4a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.1"/><path d="M15 3.5v5M12.5 6h5"/><circle cx="9.5" cy="20" r=".6"/><circle cx="17" cy="20" r=".6"/></svg><svg class="i-in" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>`;
   function buildGrid() {
     grid.innerHTML = order.map((p) => {
       const sale = p.old ? Math.round((1 - p.price / p.old) * 100) : 0;
-      const badges = [sale ? `<span class="badge badge--sale">-${sale}%</span>` : "", p.badge ? `<span class="badge${p.badge === "ახალი" ? " badge--new" : ""}">${MP.t(BADGE[p.badge])}</span>` : ""].join("");
+      const badges = [p.badge ? `<span class="badge">${MP.t(BADGE[p.badge])}</span>` : "", sale ? `<span class="badge badge--sale">-${sale}%</span>` : ""].join("");
       const inCart = MP.cart.has(p.id);
       return `<li class="tile" data-id="${p.id}" tabindex="0" aria-label="${MP.pname(p)}">
-        <div class="tile__img"><div class="tile__badges">${badges}</div><img src="${img(p.id)}" alt="${MP.pname(p)}" loading="lazy" width="800" height="800"></div>
-        <div class="tile__body">
-          <p class="tile__meta">${MP.cname(p.cat)}</p>
-          <h2 class="tile__name">${MP.pname(p)}</h2>
-          <div class="tile__row"><p class="tile__price${sale ? " is-sale" : ""}">${money(p.price)}${p.old ? `<s>${money(p.old)}</s>` : ""}</p>
+        <div class="tile__img"><div class="tile__badges">${badges}</div><img src="${img(p.id)}" alt="${MP.pname(p)}" loading="lazy" width="800" height="800">
           <button type="button" class="tile__add${inCart ? " is-in" : ""}" data-add="${p.id}" aria-label="${MP.t("addTo", MP.pname(p))}" title="${MP.t("add")}">${cartIcon}</button></div>
+        <div class="tile__body">
+          <h2 class="tile__name">${MP.sname(p)}</h2>
+          <p class="tile__meta">${MP.pname(p)}</p>
+          <p class="tile__spec">${p.spec}</p>
+          <p class="tile__price${sale ? " is-sale" : ""}">${p.old ? `<s>${money(p.old)}</s>` : ""}<b>${money(p.price)}</b></p>
         </div>
       </li>`;
     }).join("");
