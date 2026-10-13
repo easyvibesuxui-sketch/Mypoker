@@ -47,12 +47,20 @@
   }
 
   /* ── 1. LOG: draggable field ─────────────────────────────── */
+  // positions in % of the field, measured from the reference frame; z = stacking order
   const CARDS = [
-    { cat: "chips", tone: "lime", x: 21, y: 40, w: 15, d: 1.1, img: "chips-200", title: { ka: "ჩიპები", en: "CHIPS" }, era: { ka: "11.5 გ, კერამიკა, თიხა", en: "11.5 g, ceramic, clay" }, body: { ka: "კაზინოს წონის ჩიპები ალუმინის ან ხის ყუთში. 200-დან 500 ცალამდე.", en: "Casino-weight chips in aluminium or wood cases. 200 to 500 pieces." }, cap: "CHIP BOX" },
-    { cat: "cards", tone: "olive", x: 33, y: 24, w: 17, d: .9, img: "bicycle", title: { ka: "კარტები", en: "CARDS" }, era: { ka: "Bicycle, Copag, Jumbo", en: "Bicycle, Copag, Jumbo" }, body: { ka: "ქაღალდის და 100% პლასტიკის დასტები. წყალგამძლე, ორიგინალი.", en: "Paper and 100% plastic decks. Waterproof, original." }, cap: "PLAYING CARDS" },
-    { cat: "tables", tone: "paper", x: 17, y: 18, w: 13.5, d: 1.25, img: "table-oval", title: { ka: "მაგიდები", en: "TABLES" }, era: { ka: "8–10 მოთამაშე", en: "8–10 players" }, body: { ka: "ოვალური, რვაკუთხა და დასაკეცი ზედაპირი.", en: "Oval, octagon and folding tops." }, cap: "OVAL TABLE" },
-    { cat: "accessories", tone: "steel", x: 47, y: 46, w: 17, d: 1, img: "shuffler", title: { ka: "აქსესუარები", en: "ACCESSORIES" }, era: { ka: "დილერი, შაფლერი, დამცავი", en: "Dealer, shuffler, guard" }, body: { ka: "ყველაფერი, რაც თამაშს სუფთად და სწრაფად ატარებს.", en: "Everything that keeps the game clean and fast." }, cap: "CARD SHUFFLER" },
-    { cat: "games", tone: "lime", x: 62, y: 16, w: 15, d: .85, img: "nardi", title: { ka: "სამაგიდო", en: "BOARD GAMES" }, era: { ka: "ნარდი, ჭადრაკი, დომინო", en: "Backgammon, chess, domino" }, body: { ka: "ხელნაკეთი ნარდი და კლასიკური თამაშები ოჯახისთვის.", en: "Handmade backgammon and classics for the family." }, cap: "BACKGAMMON" },
+    { n: 3, cat: "accessories", layout: "sq", tone: "paper", x: 9, y: 9, w: 25.7, ar: "1 / 1", z: 1, img: "dealer-button", title: "ACCESSORIES", sub: { ka: "დილერი, შაფლერი, დამცავი", en: "Dealer, shuffler, guard" }, cap: "DEALER<br>BUTTON" },
+    { n: 2, cat: "chips", layout: "port", tone: "lime", x: 12.2, y: 35, w: 23, ar: "0.8 / 1", z: 2, img: "stack", title: "CHIPS", sub: { ka: "11.5 გ, თიხა, კერამიკა", en: "11.5 g, clay, ceramic" }, body: [{ ka: "კაზინოს წონის ჩიპები ალუმინის ან ხის ყუთში.", en: "Casino-weight chips in aluminium or wood cases." }, { ka: "200-დან 500 ცალამდე ნაკრები. ორმხრივი ბეჭდვა.", en: "Sets from 200 to 500 pieces. Printed both sides." }], cap: "CLAY<br>CHIP STACK" },
+    { n: 5, cat: "games", layout: "tall", tone: "lime", x: 68.6, y: 11, w: 23.1, ar: "0.667 / 1", z: 3, img: "nardi", title: "BOARD<br>GAMES", sub: null, cols: [{ ka: "ნარდი, ჭადრაკი, დომინო", en: "Backgammon, chess, domino" }, [{ ka: "ხელნაკეთი ნარდი კაკლის ხისგან.", en: "Handmade walnut backgammon." }, { ka: "კლასიკური თამაშები ოჯახისთვის.", en: "Classics for the whole family." }, { ka: "5 პროდუქტი.", en: "5 products." }]], cap: "WALNUT<br>BACKGAMMON" },
+    { n: 4, cat: "tables", layout: "wide", tone: "steel", x: 45.5, y: 47, w: 38.4, ar: "1.88 / 1", z: 4, img: "table-oval", title: "TABLES", sub: null, cols: [{ ka: "8–10 მოთამაშე", en: "8–10 players" }, [{ ka: "ოვალური, რვაკუთხა და დასაკეცი ზედაპირი. მწვანე და წითელი მაუდი.", en: "Oval, octagon and folding tops. Green and red felt." }]], cap: "OVAL TABLE (8 PLAYERS)" },
+    { n: 1, cat: "cards", layout: "land", tone: "olive", x: 34.9, y: 23, w: 30.8, ar: "1.5 / 1", z: 5, img: "bicycle", title: "PLAYING CARDS", sub: { ka: "Bicycle, Copag, Jumbo", en: "Bicycle, Copag, Jumbo" }, body: [{ ka: "ქაღალდის და 100% პლასტიკის დასტები.", en: "Paper and 100% plastic decks." }, { ka: "პლასტიკის კარტი წყალგამძლეა და არ იკეცება.", en: "Plastic cards are waterproof and never crease." }, { ka: "ორიგინალი, დალუქული.", en: "Original, sealed." }], cap: "SEALED<br>DECK" },
+  ];
+  const INDEX = [
+    { cat: "cards", t: { ka: "კარტები", en: "Playing cards" } },
+    { cat: "chips", t: { ka: "ჩიპები", en: "Chips" } },
+    { cat: "accessories", t: { ka: "აქსესუარები", en: "Accessories" } },
+    { cat: "tables", t: { ka: "მაგიდები", en: "Tables" } },
+    { cat: "games", t: { ka: "სამაგიდო თამაშები", en: "Board games" } },
   ];
   const field = $("[data-field]");
   const stage = $("[data-field-stage]");
@@ -62,24 +70,30 @@
     return window.PRODUCTS.filter((p) => kids.includes(p.cat));
   }
   function renderLog() {
-    field.innerHTML = CARDS.map((c, i) => `<article class="fc fc--${c.tone}" style="--x:${c.x}%;--y:${c.y}%;--w:${c.w}%" data-depth="${c.d}" data-href="catalog.html?cat=${c.cat}">
-      <header class="fc__head"><b>${String(i + 1).padStart(2, "0")}.</b><h3>${MP.tr(c.title)}</h3></header>
-      <div class="fc__body"><p>${MP.tr(c.era)}</p><div><p>${MP.tr(c.body)}</p><p style="margin-top:8px">${tt("products", countCat(c.cat))}</p></div></div>
-      <img class="fc__img" src="${img(c.img)}" alt="" draggable="false">
-      <footer class="fc__foot"><span>FIG. ${String(i + 1).padStart(2, "0")}</span><span>${c.cap}</span></footer>
-    </article>`).join("");
-    $("[data-log-index]").innerHTML = CARDS.map((c, i) => `<li><a href="catalog.html?cat=${c.cat}">${String(i + 1).padStart(2, "0")}.<br>${MP.tr(c.title)}</a></li>`).join("");
+    const nn = (n) => String(n).padStart(2, "0");
+    field.innerHTML = CARDS.map((c) => {
+      const fig = `FIG. ${nn(c.n)}`;
+      const head = `<header class="fc__head"><b>${nn(c.n)}.</b><h3>${c.title}</h3>${c.layout === "land" ? `<span class="fc__fig">${fig}</span>` : ""}</header>`;
+      const sub = c.sub ? `<p class="fc__sub">${MP.tr(c.sub)}</p>` : "";
+      let cols = "";
+      if (c.body) cols = `<div class="fc__cols"><div>${c.body.map((b) => `<p>${MP.tr(b)}</p>`).join("")}</div></div>`;
+      if (c.cols) cols = `<div class="fc__cols"><p>${MP.tr(c.cols[0])}</p><div>${c.cols[1].map((b) => `<p>${MP.tr(b)}</p>`).join("")}</div></div>`;
+      const foot = `<footer class="fc__foot">${c.layout === "land" ? "<span></span>" : `<span>${fig}</span>`}<span>${c.cap}</span></footer>`;
+      return `<article class="fc fc--${c.tone} fc--${c.layout}" style="--x:${c.x}%;--y:${c.y}%;--w:${c.w}%;--ar:${c.ar};--z:${c.z}" data-depth="${1 + (c.z - 3) * .04}" data-href="catalog.html?cat=${c.cat}">
+        ${head}${sub}${cols}<img class="fc__img" src="${img(c.img)}" alt="" draggable="false">${foot}</article>`;
+    }).join("");
+    $("[data-log-index]").innerHTML = INDEX.map((c, i) => `<li><a href="catalog.html?cat=${c.cat}">${nn(i + 1)}.<br>${MP.tr(c.t)}</a></li>`).join("");
     cardEls = $$(".fc", field);
     if (hasGsap && !reduced && !renderLog.done) {
       renderLog.done = true;
-      gsap.from(cardEls, { y: () => 200 + Math.random() * 200, rotation: () => (Math.random() - .5) * 20, opacity: 0, duration: 1.4, ease: "expo.out", stagger: .09, delay: .15 });
+      gsap.from(cardEls, { y: () => 160 + Math.random() * 160, x: () => (Math.random() - .5) * 200, rotation: () => (Math.random() - .5) * 16, opacity: 0, duration: 1.4, ease: "expo.out", stagger: { each: .08, from: "random" }, delay: .1 });
     }
     applyPan();
   }
   let cardEls = [];
   const pan = { x: 0, y: 0, tx: 0, ty: 0, vx: 0, vy: 0 };
   let dragging = false, moved = 0, sx = 0, sy = 0, lx = 0, ly = 0;
-  const bounds = () => ({ x: Math.max(0, (field.offsetWidth - stage.clientWidth) / 2), y: Math.max(0, (field.offsetHeight - stage.clientHeight) / 2) });
+  const bounds = () => ({ x: Math.max(0, (field.offsetWidth - stage.clientWidth) / 2) + stage.clientWidth * .18, y: stage.clientHeight * .2 });
   function applyPan() {
     field.style.transform = `translate3d(${pan.x}px, ${pan.y}px, 0)`;
     cardEls.forEach((c) => { const d = +c.dataset.depth - 1; c.style.transform = `translate3d(${pan.x * d}px, ${pan.y * d}px, 0)`; });
