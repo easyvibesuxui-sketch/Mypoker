@@ -42,6 +42,8 @@
     t(k, ...a) { const v = (T[lang][k] ?? k); return typeof v === "function" ? v(...a) : v; },
     tr(o) { return o && typeof o === "object" ? (o[lang] ?? o.ka) : o; },
     pname(p) { return lang === "en" ? p.en : p.name; },
+    sname(p) { return lang === "en" ? p.shortEn : p.short; },
+    cname(id) { for (const c of window.CATEGORIES) { if (c.id === id) return lang === "en" ? c.en : c.name; const ch = c.children.find((x) => x.id === id); if (ch) return lang === "en" ? ch.en : ch.name; } return id; },
     onLang(fn) { listeners.push(fn); },
     extendT(dict) { for (const l in dict) Object.assign(T[l], dict[l]); },
   };
@@ -87,6 +89,32 @@
     }
   }
   MP.scrollTo = (target) => { if (MP.lenis) MP.lenis.scrollTo(target, { offset: 0 }); else $(target)?.scrollIntoView(); };
+
+  /* ── HUD contrast: lang + cart have no background, so pick ink from what is underneath ── */
+  const hudEnd = $(".hud__end");
+  const lum = (c) => { const m = c.match(/[\d.]+/g); if (!m) return null; const [r, g, b, a = 1] = m.map(Number); if (a < .1) return null; return (.2126 * r + .7152 * g + .0722 * b) / 255; };
+  const hudParts = $$(".hud__lang, .hud__cart");
+  function darkAt(x, y) {
+    for (const el of document.elementsFromPoint(x, y)) {
+      if (el.closest(".hud")) continue;
+      if (el.tagName === "VIDEO" || el.tagName === "IMG" || el.tagName === "CANVAS") return el.closest("[data-hud]")?.dataset.hud === "dark";
+      const l = lum(getComputedStyle(el).backgroundColor);
+      if (l !== null) return l < .5;
+    }
+    return false;
+  }
+  function hudTheme() {
+    hudParts.forEach((part) => {
+      const r = part.getBoundingClientRect();
+      const y = r.top + r.height / 2;
+      // sample both ends; if they disagree the halo keeps the text readable
+      const a = darkAt(r.left + 4, y), b = darkAt(r.right - 4, y);
+      part.classList.toggle("is-dark", a && b ? true : a || b ? darkAt(r.left + r.width / 2, y) : false);
+    });
+  }
+  addEventListener("scroll", () => requestAnimationFrame(hudTheme), { passive: true });
+  addEventListener("resize", hudTheme);
+  setTimeout(hudTheme, 50);
 
   /* ── rail ─────────────────────────────── */
   const rail = $(".rail");

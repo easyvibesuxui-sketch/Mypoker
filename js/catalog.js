@@ -39,7 +39,7 @@
       const badges = [sale ? `<span class="badge badge--sale">-${sale}%</span>` : "", p.badge ? `<span class="badge${p.badge === "ახალი" ? " badge--new" : ""}">${MP.t(BADGE[p.badge])}</span>` : ""].join("");
       const inCart = MP.cart.has(p.id);
       return `<li class="tile" data-id="${p.id}" tabindex="0" aria-label="${MP.pname(p)}">
-        <div class="tile__meta"><span>${fig(p)}.</span><span>FIG. ${fig(p)}</span></div>
+        <div class="tile__meta"><span>${MP.cname(p.cat)}</span></div>
         <div class="tile__badges">${badges}</div>
         <div class="tile__img"><img src="${img(p.id)}" alt="${MP.pname(p)}" loading="lazy" width="800" height="800"></div>
         <h2 class="tile__name">${MP.pname(p)}</h2>
@@ -102,7 +102,7 @@
     qvLast = document.activeElement;
     $("[data-qv-img]").src = img(id);
     $("[data-qv-img]").alt = MP.pname(p);
-    $("[data-qv-fig]").textContent = `FIG. ${fig(p)}`;
+    $("[data-qv-fig]").textContent = MP.cname(p.cat);
     $("[data-qv-name]").textContent = MP.pname(p);
     $("[data-qv-spec]").textContent = p.spec;
     $("[data-qv-price]").textContent = money(p.price);

@@ -9,9 +9,11 @@
   --steel-2: #d6dbdf;
   --grey: #8c959e;
   --grey-2: #c4cad0;
-  --lime: #b4f03c;
-  --lime-2: #9edc1f;
-  --olive: #6f9b17;
+  --lime: #b2c06e;
+  --lime-2: #9dac5a;
+  --card-lime: #b9c67c;
+  --card-olive: #7e8d47;
+  --olive: #7e8d47;
   --red: #e0142c;
   --line: rgba(0, 0, 0, .12);
   --line-d: rgba(255, 255, 255, .16);
@@ -84,7 +86,7 @@ button { cursor: pointer; }
   font-weight: 800;
   font-size: 24px;
   letter-spacing: .02em;
-  box-shadow: 0 0 0 1px #000, 0 10px 30px -12px rgba(150, 220, 20, .8);
+  box-shadow: 0 0 0 1px #000;
   transition: background-color var(--m-150) var(--ease-out), color var(--m-150) var(--ease-out), transform var(--m-150) var(--ease-out);
 }
 .hud__cat sup { align-self: flex-start; margin-top: 8px; font-family: var(--f-mono); font-size: 10px; font-weight: 500; }
@@ -92,13 +94,18 @@ button { cursor: pointer; }
 .hud__cat:active { transform: scale(.98); }
 .hud__cat[aria-current="page"]::after { content: ""; position: absolute; left: 30px; right: 30px; bottom: 8px; height: 2px; background: currentColor; }
 .hud__end { justify-self: end; display: flex; align-items: center; gap: 6px; }
-.hud__lang { display: flex; height: 38px; background: #000; }
-.hud__lang button { padding: 0 9px; border: 0; background: none; color: #777; font-family: var(--f-mono); font-size: 11px; }
-.hud__lang button.is-on { color: #fff; }
-.hud__cart { position: relative; display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border: 0; background: #000; color: #fff; font-family: var(--f-mono); font-size: 12px; }
+.hud__lang, .hud__cart { --hud-fg: #111; --hud-dim: rgba(0, 0, 0, .45); text-shadow: 0 0 6px rgba(255, 255, 255, .9), 0 0 2px rgba(255, 255, 255, .9); }
+.hud__lang.is-dark, .hud__cart.is-dark { --hud-fg: #fff; --hud-dim: rgba(255, 255, 255, .5); text-shadow: 0 0 6px rgba(0, 0, 0, .9), 0 0 2px rgba(0, 0, 0, .9); }
+.hud__cart svg { filter: drop-shadow(0 0 3px rgba(255, 255, 255, .8)); }
+.hud__cart.is-dark svg { filter: drop-shadow(0 0 3px rgba(0, 0, 0, .8)); }
+.hud__lang { display: flex; height: 38px; align-items: center; }
+.hud__lang button { padding: 0 6px; border: 0; background: none; color: var(--hud-dim); font-family: var(--f-mono); font-size: 12px; font-weight: 500; transition: color var(--m-200) var(--ease-out); }
+.hud__lang button.is-on { color: var(--hud-fg); text-decoration: underline; text-underline-offset: 4px; }
+.hud__lang button:hover { color: var(--hud-fg); }
+.hud__cart { position: relative; display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 8px; border: 0; background: none; color: var(--hud-fg); font-family: var(--f-mono); font-size: 13px; font-weight: 500; transition: color var(--m-200) var(--ease-out); }
 .hud__cart svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .hud__cart b { font-weight: 500; min-width: 1ch; }
-.hud__cart:hover { color: var(--lime); }
+.hud__cart:hover { opacity: .7; }
 .hud__call { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 16px 0 6px; background: var(--red); color: #fff; text-decoration: none; font-family: var(--f-mono); font-size: 14px; font-weight: 500; letter-spacing: .02em; line-height: 1.15; box-shadow: 0 10px 30px -12px rgba(224, 20, 44, .8); transition: background-color var(--m-150) var(--ease-out); }
 .hud__call small { display: block; font-size: 10px; font-weight: 400; opacity: .85; letter-spacing: 0; }
 .hud__call i { position: relative; display: grid; place-items: center; width: 34px; height: 34px; background: #fff; color: var(--red); border-radius: 50%; }

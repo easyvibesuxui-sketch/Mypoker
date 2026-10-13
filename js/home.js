@@ -57,9 +57,9 @@
     TEX.forEach(([t, id, code], i) => {
       const p = byId[id];
       cells.push(`<a class="hc" href="catalog.html?p=${id}" style="grid-row:${Math.floor(i / 5) + 1};grid-column:${(i % 5) + 1}" aria-label="${MP.pname(p)}, ${money(p.price)}">
-        <span class="hc__n" data-n="(${String(i + 1).padStart(2, "0")})">(${String(i + 1).padStart(2, "0")})</span>
+        <span class="hc__n" data-n="(${MP.cname(p.cat)})">(${MP.cname(p.cat)})</span>
         <figure class="hc__fig"><img class="hc__img" src="assets/img/tex/${t}.webp" alt="" loading="${i < 10 ? "eager" : "lazy"}"><i></i><i></i><i></i><i></i></figure>
-        <span class="hc__cap"><span>${code}</span><b>${money(p.price)}</b></span></a>`);
+        <span class="hc__cap"><span>${MP.sname(p)}</span><b>${money(p.price)}</b></span></a>`);
     });
     const tx = HTXT[MP.lang];
     cells.push(`<div class="hc hc--txt hc--last" style="grid-row:1;grid-column:6"><p>${tx[0]}</p></div>`);
@@ -131,8 +131,9 @@
   function renderLog() {
     const nn = (n) => String(n).padStart(2, "0");
     field.innerHTML = CARDS.map((c) => {
-      const fig = `FIG. ${nn(c.n)}`;
-      const head = `<header class="fc__head"><b>${nn(c.n)}.</b><h3>${c.title}</h3>${c.layout === "land" ? `<span class="fc__fig">${fig}</span>` : ""}</header>`;
+      const from = Math.min(...PRODUCTS_IN(c.cat).map((p) => p.price));
+      const fig = MP.lang === "en" ? `from ${money(from)}` : `${money(from)}-დან`;
+      const head = `<header class="fc__head"><h3>${c.title}</h3>${c.layout === "land" ? `<span class="fc__fig">${fig}</span>` : ""}</header>`;
       const sub = c.sub ? `<p class="fc__sub">${MP.tr(c.sub)}</p>` : "";
       let cols = "";
       if (c.body) cols = `<div class="fc__cols"><div>${c.body.map((b) => `<p>${MP.tr(b)}</p>`).join("")}</div></div>`;
@@ -141,7 +142,7 @@
       return `<article class="fc fc--${c.tone} fc--${c.layout}" style="--x:${c.x}%;--y:${c.y}%;--w:${c.w}%;--ar:${c.ar};--z:${c.z}" data-depth="${1 + (c.z - 3) * .04}" data-href="catalog.html?cat=${c.cat}">
         ${head}${sub}${cols}<img class="fc__img" src="${img(c.img)}" alt="" draggable="false">${foot}</article>`;
     }).join("");
-    $("[data-log-index]").innerHTML = INDEX.map((c, i) => `<li><a href="catalog.html?cat=${c.cat}">${nn(i + 1)}.<br>${MP.tr(c.t)}</a></li>`).join("");
+    $("[data-log-index]").innerHTML = INDEX.map((c) => `<li><a href="catalog.html?cat=${c.cat}">${MP.tr(c.t)}<br>${tt("products", countCat(c.cat))}</a></li>`).join("");
     cardEls = $$(".fc", field);
     if (hasGsap && !reduced && !renderLog.done) {
       renderLog.done = true;
@@ -205,7 +206,8 @@
   const fx = $("[data-fx]");
   const ctx = fx.getContext("2d");
   let phase = -1;
-  $("[data-phases]").innerHTML = PHASES.map((_, i) => `<li>PHASE 0${i + 1}</li>`).join("");
+  const renderPhases = () => { $("[data-phases]").innerHTML = PHASES.map((P) => `<li>${MP.sname(byId[P.id])}</li>`).join(""); };
+  renderPhases();
   let particles = [], fxRunning = false;
   function burst(fromImg) {
     if (reduced) return;
@@ -248,6 +250,7 @@
     const first = phase === -1;
     phase = i;
     const P = PHASES[i], prod = byId[P.id];
+    renderPhases();
     $$("[data-phases] li").forEach((li, k) => li.classList.toggle("is-on", k === i));
     MP.scramble($("[data-chain-t]"), P.t);
     $("[data-chain-d]").textContent = MP.tr(P.d);
@@ -328,7 +331,7 @@
     archIdx = i;
     const s = SETUPS[i];
     const sum = s.kit.reduce((a, id) => a + byId[id].price, 0);
-    $("[data-arch-count]").textContent = `(0${i + 1}/0${SETUPS.length})`;
+    $("[data-arch-count]").textContent = `(${MP.tr(s.loc)})`;
     MP.scramble($("[data-arch-coord]"), s.coord);
     MP.scramble($("[data-arch-name]"), s.name);
     $("[data-arch-dl]").innerHTML = `<dt>${tt("loc")}</dt><dd>${MP.tr(s.loc)}</dd><dt>${tt("players")}</dt><dd>${s.players}</dd><dt>${tt("total")}</dt><dd>${money(sum)}</dd>`;
@@ -379,12 +382,12 @@
       b.type = "button"; b.className = "tag"; b.dataset.add = k.id;
       b.style.setProperty("--lx", `${k.x}%`); b.style.setProperty("--ly", `${k.y}%`);
       b.setAttribute("aria-label", `${MP.pname(byId[k.id])}, ${money(byId[k.id].price)}`);
-      b.innerHTML = `<span>0${i + 1}</span><span>${k.k}</span><span class="tag__pop" aria-hidden="true"><img src="${img(k.id)}" alt=""><em>${money(byId[k.id].price)}</em></span>`;
+      b.innerHTML = `<span>${MP.sname(byId[k.id])}</span><span class="tag__pop" aria-hidden="true"><img src="${img(k.id)}" alt=""><em>${money(byId[k.id].price)}</em></span>`;
       b.addEventListener("mouseenter", () => kitOn(i));
       b.addEventListener("focus", () => kitOn(i));
       canvasKit.appendChild(b);
     });
-    kitList.innerHTML = KIT.map((k, i) => `<li><button type="button" data-add="${k.id}" data-kit-i="${i}"><span>0${i + 1}. ${k.k}</span><span>${money(byId[k.id].price)}</span></button></li>`).join("");
+    kitList.innerHTML = KIT.map((k, i) => `<li><button type="button" data-add="${k.id}" data-kit-i="${i}"><span>${MP.sname(byId[k.id])}</span><span>${money(byId[k.id].price)}</span></button></li>`).join("");
   }
   function kitOn(i) {
     $$(".tag", canvasKit).forEach((t, k) => t.classList.toggle("is-on", k === i));
@@ -412,7 +415,7 @@
     const s = STEPS[i];
     $$(".dim", vis).forEach((im, k) => im.classList.toggle("is-on", k === i));
     $$(".lit", vis).forEach((im, k) => im.classList.toggle("is-on", k === i));
-    $("[data-proc-n]").textContent = `STEP 0${i + 1}`;
+    $("[data-proc-n]").textContent = "";
     MP.scramble($("[data-proc-name]"), s.name);
     $("[data-proc-d]").textContent = MP.tr(s.d);
     const b = $("[data-proc-buy]");
