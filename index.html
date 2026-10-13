@@ -3,381 +3,248 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MyPoker — ქართული პოკერის კლუბი</title>
-  <meta name="description" content="MyPoker — პრემიუმ პოკერის კლუბი თბილისში. Texas Hold'em, Omaha, ყოველკვირეული ტურნირები და კერძო მაგიდები.">
-  <meta name="theme-color" content="#0b0b0c">
+  <title>mypoker.ge — პოკერის და სამაგიდო თამაშების მაღაზია</title>
+  <meta name="description" content="პოკერის ჩიპები, კარტები, მაგიდები და სამაგიდო თამაშები. უფასო მიწოდება თბილისში 80 ₾-დან.">
+  <meta name="theme-color" content="#fbfcfd">
+  <meta property="og:title" content="mypoker.ge">
+  <meta property="og:description" content="პოკერის ჩიპები, კარტები, მაგიდები და სამაგიდო თამაშები თბილისში.">
+  <meta property="og:image" content="assets/img/scene.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Georgian:wdth,wght@62.5..100,300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230b0b0c'/%3E%3Cpath fill='%23c6ff3d' d='M50 12C50 12 16 41 16 60c0 13 11 20 21 18 5-1 8-3 10-7-1 9-5 14-12 17h30c-7-3-11-8-12-17 2 4 5 6 10 7 10 2 21-5 21-18C84 41 50 12 50 12Z'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e0142c'/%3E%3Cpath fill='%23fff' d='M50 22 70 50 50 78 30 50Z'/%3E%3C/svg%3E">
 </head>
 <body>
 
-<!-- Shared SVG defs: suits + engraving patterns -->
 <svg class="defs" aria-hidden="true" focusable="false">
-  <defs>
-    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
-      <rect width="5" height="5" fill="#f5f4ef"/>
-      <line x1="0" y1="0" x2="0" y2="5" stroke="#0b0b0c" stroke-width="2.4"/>
-    </pattern>
-    <pattern id="hatch-fine" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)">
-      <line x1="0" y1="0" x2="0" y2="4" stroke="#0b0b0c" stroke-width="1.1"/>
-    </pattern>
-    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse">
-      <circle cx="3" cy="3" r="1.3" fill="#0b0b0c"/>
-    </pattern>
-    <symbol id="s-spade" viewBox="0 0 100 100"><path d="M50 4C50 4 10 39 10 62c0 16 14 24 26 22 6-1 10-4 12-8-1 10-6 16-14 19h32c-8-3-13-9-14-19 2 4 6 7 12 8 12 2 26-6 26-22C90 39 50 4 50 4Z"/></symbol>
-    <symbol id="s-heart" viewBox="0 0 100 100"><path d="M50 92S8 62 8 34C8 18 20 8 33 8c9 0 15 6 17 12 2-6 8-12 17-12 13 0 25 10 25 26 0 28-42 58-42 58Z"/></symbol>
-    <symbol id="s-diamond" viewBox="0 0 100 100"><path d="M50 4 86 50 50 96 14 50Z"/></symbol>
-    <symbol id="s-club" viewBox="0 0 100 100"><circle cx="50" cy="28" r="20"/><circle cx="27" cy="58" r="20"/><circle cx="73" cy="58" r="20"/><path d="M45 56c0 22-6 32-14 38h38c-8-6-14-16-14-38Z"/></symbol>
-  </defs>
+  <symbol id="i-diamond" viewBox="0 0 100 100"><path d="M50 4 86 50 50 96 14 50Z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M3 4h2.2l2.1 10.4a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.1M9.5 20.2h.01M17 20.2h.01"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M10.8 18a7.2 7.2 0 1 0 0-14.4 7.2 7.2 0 0 0 0 14.4ZM16 16l4.4 4.4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1Z"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M2.5 6.5h11v9h-11zM13.5 9.5h4l3 3v3h-7zM6.5 18.5a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2ZM16.5 18.5a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M5 12h14"/></symbol>
 </svg>
 
-<a class="skip" href="#main">გადადი კონტენტზე</a>
+<a class="skip" href="#shop" data-i18n="skip">გადადი კატალოგზე</a>
 
-<header class="nav" id="top">
-  <a class="nav__logo" href="#top" aria-label="MyPoker — მთავარი">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#s-spade"/></svg>
-    <span>MYPOKER<sup>®</sup></span>
-  </a>
-  <nav class="nav__links" aria-label="მთავარი ნავიგაცია">
-    <a href="#games"><i>(01)</i> თამაშები</a>
-    <a href="#hand"><i>(02)</i> ხელის ანატომია</a>
-    <a href="#tournaments"><i>(03)</i> ტურნირები</a>
-    <a href="#table"><i>(04)</i> მაგიდა</a>
-    <a href="#join"><i>(05)</i> შემოგვიერთდი</a>
-  </nav>
-  <div class="nav__end">
-    <span class="pill">18+</span>
-    <a class="btn btn--lime" href="#book">დაჯავშნე ადგილი</a>
+<header class="top" data-top>
+  <div class="top__left">
+    <a class="logo" href="#top" aria-label="mypoker.ge">
+      <span class="logo__mark"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-diamond"/></svg></span>
+      <span class="logo__word">mypoker<b>.ge</b></span>
+    </a>
+    <div class="lang" role="group" aria-label="ენა / Language">
+      <button type="button" data-lang="ka" aria-pressed="true">ქარ</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <p class="top__ship"><svg aria-hidden="true"><use href="#i-truck"/></svg><span data-i18n="ship">უფასო მიწოდება თბილისში</span> <b data-i18n="shipFrom">80 ₾-დან</b></p>
+  <div class="top__right">
+    <label class="search">
+      <svg aria-hidden="true"><use href="#i-search"/></svg>
+      <span class="sr" data-i18n="search">ძებნა</span>
+      <input type="search" data-search placeholder="ძებნა" data-i18n-ph="search" autocomplete="off">
+    </label>
+    <a class="call" href="tel:+995555123456">
+      <span class="call__ico"><svg aria-hidden="true"><use href="#i-phone"/></svg></span>
+      <span class="call__txt"><small data-i18n="callUs">დაგვირეკეთ</small>+995 555 12 34 56</span>
+    </a>
+    <button class="cart-btn" type="button" data-open-cart aria-label="კალათა">
+      <svg aria-hidden="true"><use href="#i-cart"/></svg>
+      <span class="cart-btn__n" data-cart-count hidden>0</span>
+    </button>
   </div>
 </header>
 
 <ol class="rail" aria-hidden="true"></ol>
 
-<main id="main">
+<main id="top">
 
-  <!-- 01 HERO / GAMES ------------------------------------------------ -->
-  <section class="hero" id="games" data-rail>
-    <div class="hero__stage" data-stage>
-      <p class="hint hint--top">(გადაათრიე ბარათები)</p>
-
-      <article class="gcard gcard--paper" style="--x:6%;--y:7%;--r:-3deg" data-drag>
-        <header><b>03.</b><h3>ტურნირები</h3></header>
-        <p class="gcard__sub">Weekly · Monthly · Main Event</p>
-        <svg class="gcard__fig gcard__fig--round" viewBox="0 0 200 200" aria-hidden="true">
-          <circle cx="100" cy="100" r="92" fill="url(#hatch)" stroke="#0b0b0c" stroke-width="3"/>
-          <circle cx="100" cy="100" r="62" fill="#f5f4ef" stroke="#0b0b0c" stroke-width="3"/>
-          <g fill="#0b0b0c"><rect x="94" y="8" width="12" height="22"/><rect x="94" y="170" width="12" height="22"/><rect x="8" y="94" width="22" height="12"/><rect x="170" y="94" width="22" height="12"/></g>
-          <text x="100" y="94" text-anchor="middle" font-family="Archivo" font-stretch="70%" font-weight="800" font-size="34">₾50K</text>
-          <text x="100" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="12" letter-spacing="2">GTD</text>
-        </svg>
-        <footer><span>FIG. 03</span><span>MAIN EVENT<br>CHIP</span></footer>
-      </article>
-
-      <article class="gcard gcard--lime" style="--x:11%;--y:30%;--r:2deg" data-drag>
-        <header><b>02.</b><h3>OMAHA PLO</h3></header>
-        <div class="gcard__cols">
-          <p class="gcard__sub">4 დახურული კარტი</p>
-          <p>ოთხი კარტი ხელში, ხუთი მაგიდაზე. მეტი კომბინაცია, მეტი აქცია.</p>
-          <p>Pot-Limit ლიმიტები ყოველ საღამოს.</p>
-        </div>
-        <div class="gcard__fan" data-fan="A♠ K♠ Q♥ J♥"></div>
-        <footer><span>FIG. 02</span><span>FOUR-CARD<br>FAN</span></footer>
-      </article>
-
-      <article class="gcard gcard--olive" style="--x:35%;--y:17%;--r:-1deg" data-drag>
-        <header><b>01.</b><h3>TEXAS HOLD'EM</h3><span class="gcard__tag">FIG. 01</span></header>
-        <div class="gcard__cols">
-          <p class="gcard__sub">No-Limit · 2 კარტი</p>
-          <p>ყველაზე პოპულარული ფორმატი მსოფლიოში. ორი კარტი ხელში, ხუთი საერთო.</p>
-          <p>ლიმიტები ₾1/2-დან.</p>
-        </div>
-        <div class="gcard__fan gcard__fan--two" data-fan="A♠ A♥"></div>
-        <footer><span></span><span>POCKET<br>ACES</span></footer>
-      </article>
-
-      <article class="gcard gcard--steel gcard--wide" style="--x:47%;--y:46%;--r:1.5deg" data-drag>
-        <header><b>04.</b><h3>CASH GAMES</h3></header>
-        <p class="gcard__lead">ქეშ-მაგიდები 24/7 რეჟიმში. დაჯექი და ადექი, როცა მოგინდება. ჩიპები ფულის ექვივალენტია.</p>
-        <svg class="gcard__fig" viewBox="0 0 420 150" aria-hidden="true">
-          <g class="chipstack" transform="translate(30 20)"></g>
-          <g class="chipstack" transform="translate(130 0)"></g>
-          <g class="chipstack" transform="translate(230 30)"></g>
-          <g class="chipstack" transform="translate(330 12)"></g>
-        </svg>
-        <footer><span>FIG. 04</span><span>CHIP STACKS</span></footer>
-      </article>
-
-      <article class="gcard gcard--lime" style="--x:73%;--y:5%;--r:2.5deg" data-drag>
-        <header><b>05.</b><h3>კერძო<br>მაგიდები</h3></header>
-        <div class="gcard__cols">
-          <p class="gcard__sub">Private Room</p>
-          <p>დახურული ოთახი 10 ადამიანამდე.</p>
-          <p>პირადი დილერი და სერვისი.</p>
-          <p>იდეალურია კორპორატიული საღამოსთვის.</p>
-        </div>
-        <svg class="gcard__fig gcard__fig--btn" viewBox="0 0 200 200" aria-hidden="true">
-          <ellipse cx="100" cy="150" rx="78" ry="18" fill="#0b0b0c" opacity=".18"/>
-          <circle cx="100" cy="96" r="76" fill="#f5f4ef" stroke="#0b0b0c" stroke-width="3"/>
-          <circle cx="100" cy="96" r="60" fill="none" stroke="#0b0b0c" stroke-width="1.5" stroke-dasharray="3 5"/>
-          <text x="100" y="90" text-anchor="middle" font-family="Archivo" font-stretch="70%" font-weight="900" font-size="32">DEALER</text>
-          <text x="100" y="116" text-anchor="middle" font-family="JetBrains Mono" font-size="11" letter-spacing="3">MYPOKER</text>
-        </svg>
-        <footer><span>FIG. 05</span><span>DEALER BUTTON</span></footer>
-      </article>
-
-      <ol class="hero__index">
-        <li><i>01.</i>Texas Hold'em</li>
-        <li><i>02.</i>Omaha PLO</li>
-        <li><i>03.</i>ტურნირები</li>
-        <li><i>04.</i>Cash Games</li>
-        <li><i>05.</i>კერძო მაგიდები</li>
-      </ol>
+  <!-- Hero: draggable spec cards -->
+  <section class="hero" data-rail>
+    <div class="hero__stage">
+      <p class="hint hero__hint" data-i18n="drag">(გადაათრიე ბარათები)</p>
+      <div class="hero__cards" data-hero-cards></div>
+      <ul class="hero__index" data-hero-index></ul>
     </div>
-
     <aside class="hero__panel">
-      <h1 class="hero__title">LOG:<br>MYPOKER</h1>
-      <p class="hero__kicker">ქართული პოკერის<br>კლუბი. თბილისი.<br>EST. 2014</p>
-      <p class="hero__desc">პრემიუმ სივრცე მათთვის, ვინც პოკერს სერიოზულად აღიქვამს: პროფესიონალი დილერები, სამართლიანი თამაში და ატმოსფერო, რომელშიც ყოველი ხელი მნიშვნელოვანია.</p>
-      <a class="btn btn--ink" href="#book">დაჯავშნე ადგილი <span aria-hidden="true">→</span></a>
+      <h1 class="hero__title">LOG:<br>MYPOKER<span>.GE</span></h1>
+      <p class="hero__kicker" data-i18n="kicker">ყველაფერი პოკერისთვის და სამაგიდო თამაშებისთვის. თბილისი.</p>
+      <p class="hero__desc" data-i18n="heroDesc">კაზინოს ხარისხის ჩიპები, პლასტიკის კარტები და მაგიდები 8–10 მოთამაშისთვის. შეუკვეთე დღეს და მიიღე ხვალ.</p>
+      <div class="hero__cta">
+        <a class="btn btn--ink" href="#shop" data-i18n="toShop">კატალოგის ნახვა</a>
+        <a class="btn btn--line" href="tel:+995555123456" data-i18n="orderCall">შეკვეთა ზარით</a>
+      </div>
     </aside>
   </section>
 
-  <!-- 02 HAND ANATOMY (sticky scroll) -------------------------------- -->
-  <section class="hand" id="hand" data-rail data-sticky="4">
-    <div class="hand__sticky">
-      <h2 class="tri tri--grey"><span>ხელის</span><span>ანატომია</span><span>Hand.</span></h2>
-      <div class="hand__grid">
-        <ol class="phases" aria-label="ხელის ეტაპები">
-          <li class="is-on">PHASE 01</li>
-          <li>PHASE 02</li>
-          <li>PHASE 03</li>
-          <li>PHASE 04</li>
-        </ol>
+  <!-- Catalogue -->
+  <section class="shop" id="shop" data-rail>
+    <aside class="filters" aria-label="ფილტრები">
+      <p class="filters__label" data-i18n="category">კატეგორია</p>
+      <nav class="cats" data-cats></nav>
+      <p class="filters__label" data-i18n="price">ფასი</p>
+      <div class="prices" data-prices></div>
+    </aside>
 
-        <div class="board" aria-live="polite">
-          <div class="board__pot"><span>POT</span><b data-pot>₾ 120</b></div>
-          <div class="board__row board__row--community">
-            <div class="slot" data-phase="1"></div>
-            <div class="slot" data-phase="1"></div>
-            <div class="slot" data-phase="1"></div>
-            <div class="slot" data-phase="2"></div>
-            <div class="slot" data-phase="3"></div>
-          </div>
-          <div class="board__row board__row--hole">
-            <div class="slot slot--hole" data-phase="0"></div>
-            <div class="slot slot--hole" data-phase="0"></div>
-          </div>
-          <p class="board__result" data-result>&nbsp;</p>
+    <div class="shop__main">
+      <header class="shop__head">
+        <div>
+          <h2 class="shop__title" data-shop-title>ყველა პროდუქტი</h2>
+          <p class="shop__count" data-shop-count>17 პროდუქტი</p>
         </div>
-
-        <div class="phase-info">
-          <p class="phase-info__title" data-type>PRE-FLOP</p>
-          <p class="phase-info__text" data-phase-text>ორი დახურული კარტი. პირველი ფსონი და პირველი გადაწყვეტილება: Fold, Call თუ Raise.</p>
-          <div class="frame">
-            <span></span><span></span><span></span><span></span>
-            <pre class="frame__ascii" data-ascii></pre>
-          </div>
-          <p class="hint">(scroll down)</p>
-        </div>
+        <label class="sort">
+          <span class="sr" data-i18n="sortBy">დალაგება</span>
+          <select data-sort>
+            <option value="rec" data-i18n="sortRec">რეკომენდებული</option>
+            <option value="asc" data-i18n="sortAsc">ფასი: ზრდადობით</option>
+            <option value="desc" data-i18n="sortDesc">ფასი: კლებადობით</option>
+          </select>
+        </label>
+      </header>
+      <ul class="grid" data-grid></ul>
+      <div class="empty" data-empty hidden>
+        <p class="empty__title" data-i18n="emptyTitle">ამ ფილტრით პროდუქტი ვერ მოიძებნა.</p>
+        <button class="btn btn--line" type="button" data-reset data-i18n="emptyReset">ფილტრების გასუფთავება</button>
       </div>
     </div>
   </section>
 
-  <!-- 03 WHY (bright lime) ------------------------------------------- -->
-  <section class="why" id="why" data-rail>
-    <div class="why__bg" aria-hidden="true">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  <!-- All-in: floating products -->
+  <section class="allin" data-rail aria-label="All-in">
+    <div class="allin__tiles" data-allin-tiles aria-hidden="true"></div>
+    <div class="allin__center">
+      <h2 class="allin__word">All‑in.</h2>
+      <p class="hint hint--lime" data-i18n="scroll">(scroll down)</p>
     </div>
-    <h2 class="tri tri--ink"><span>რატომ</span><span>MyPoker</span><span>Club.</span></h2>
+    <p class="allin__note" data-i18n="allinNote">17 პროდუქტი, ერთი მისამართი. ყველაფერი, რაც შინაურ ტურნირს სჭირდება.</p>
+  </section>
+
+  <!-- Why: lime smoke video -->
+  <section class="why" data-rail>
+    <video class="why__video" data-video src="assets/video/lime-smoke.mp4" poster="assets/video/lime-smoke.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <h2 class="tri"><span data-i18n="why1">ჩიპები.</span><span data-i18n="why2">კარტები.</span><span data-i18n="why3">მაგიდები.</span></h2>
     <div class="why__cols">
       <article>
-        <b>01</b>
-        <h3>პროფესიონალი დილერები</h3>
-        <p class="why__lead">სიზუსტე ყოველ დარიგებაში.</p>
-        <p>სერტიფიცირებული დილერები, რომლებიც თამაშს სწრაფად, სუფთად და წესების სრული დაცვით ატარებენ.</p>
+        <h3 data-i18n="w1t">მიწოდება 24 საათში</h3>
+        <p data-i18n="w1d">თბილისში შეკვეთას მეორე დღეს მოგიტანთ. 80 ₾-ზე მეტი შეკვეთის მიწოდება უფასოა.</p>
       </article>
       <article>
-        <b>02</b>
-        <h3>სამართლიანი თამაში</h3>
-        <p class="why__lead">გამჭვირვალე წესები.</p>
-        <p>ავტომატური შაფლერები, ვიდეოკონტროლი და ფლორ-მენეჯერი ყოველ მაგიდასთან. ნდობა თამაშის ნაწილია.</p>
+        <h3 data-i18n="w2t">ორიგინალი ბრენდები</h3>
+        <p data-i18n="w2d">Bicycle, Copag და კაზინოს ხარისხის ჩიპები. ყოველ პროდუქტს ვამოწმებთ გაგზავნამდე.</p>
       </article>
       <article>
-        <b>03</b>
-        <h3>პრემიუმ ატმოსფერო</h3>
-        <p class="why__lead">კომფორტი, რომელიც არ გაფანტავს.</p>
-        <p>რბილი განათება, სუფთა ჰაერი, ბარი და სამზარეულო. სივრცე, სადაც საათობით ფოკუსირებული რჩები.</p>
+        <h3 data-i18n="w3t">გადახდა მიღებისას</h3>
+        <p data-i18n="w3d">გადაიხადე ნაღდით ან ბარათით, როცა კურიერი მოვა. წინასწარი გადახდა საჭირო არ არის.</p>
       </article>
     </div>
   </section>
 
-  <!-- 04 ALL-IN (parallax) ------------------------------------------- -->
-  <section class="allin" id="allin" data-rail>
-    <div class="allin__tiles" aria-hidden="true">
-      <div class="tile tile--card" style="--l:6%;--t:6%;--s:-.35" data-card="K♠"></div>
-      <div class="tile tile--quote" style="--l:66%;--t:4%;--s:.25"><p>“Fold-იც გადაწყვეტილებაა.”</p><span>— HOUSE RULE 07</span></div>
-      <div class="tile tile--chips" style="--l:80%;--t:30%;--s:-.5"></div>
-      <div class="tile tile--card tile--sm" style="--l:24%;--t:56%;--s:.45" data-card="7♦"></div>
-      <div class="tile tile--lime" style="--l:4%;--t:70%;--s:-.2"><b>₾ 2.4M</b><span>გათამაშებული 2025-ში</span></div>
-      <div class="tile tile--card" style="--l:76%;--t:66%;--s:.35" data-card="Q♥"></div>
-      <div class="tile tile--quote" style="--l:40%;--t:84%;--s:-.3"><p>“მაგიდა არ ტყუის.”</p><span>— FLOOR, 03:14 AM</span></div>
+  <!-- Shop the table -->
+  <section class="set" id="set" data-rail>
+    <div class="set__stage">
+      <h2 class="set__title" data-i18n="setTitle">მაგიდის კომპლექტი</h2>
+      <p class="hint set__hint" data-i18n="setHint">(დააჭირე ეტიკეტებს)</p>
+      <div class="set__canvas" data-set-canvas>
+        <img src="assets/img/scene.webp" alt="ჩიპების კეისი, ნარდი, ჩიპები, კარტი, დილერის ღილაკი და შაფლერი სტუდიურ ფონზე" width="2000" height="1129" loading="lazy">
+      </div>
     </div>
-    <div class="allin__center">
-      <div class="shuffle" aria-hidden="true"></div>
-      <h2 class="allin__word">All‑In.</h2>
-      <p class="hint hint--lime">(scroll down)</p>
-    </div>
-    <p class="allin__note">ყოველი ღამე იწყება ერთი ხელით.<br>ზოგი მათგანი ლეგენდად იქცევა.</p>
-  </section>
-
-  <!-- 05 TOURNAMENTS ------------------------------------------------- -->
-  <section class="tour" id="tournaments" data-rail>
-    <div class="tour__left">
-      <h2 class="tour__title">ტურნირების<br>არქივი.</h2>
-      <p class="tour__desc">მომავალი ტურნირები და ფესტივალები. აირჩიე ივენთი, რომ ნახო დეტალები.</p>
-      <ul class="tour__list" role="tablist" aria-label="ტურნირები"></ul>
-    </div>
-    <div class="tour__poster" data-poster aria-live="polite"></div>
-    <div class="tour__meta">
-      <p data-count>(01/05)</p>
-      <p>41.7151° N, 44.8271° E</p>
-      <p class="tour__type" data-tour-type>&nbsp;</p>
-      <dl data-tour-dl></dl>
-      <a class="btn btn--lime" href="#book">რეგისტრაცია <span aria-hidden="true">→</span></a>
-    </div>
-  </section>
-
-  <!-- 06 TABLE INVENTORY --------------------------------------------- -->
-  <section class="table" id="table" data-rail>
-    <div class="table__stage">
-      <h2 class="table__title">მაგიდის ინვენტარი</h2>
-      <p class="hint hint--center">(დააჭირე ეტიკეტებს)</p>
-      <svg class="table__art" viewBox="0 0 1200 660" aria-hidden="true">
-        <defs>
-          <radialGradient id="felt" cx="50%" cy="0%" r="90%">
-            <stop offset="0" stop-color="#e9edf1"/><stop offset="1" stop-color="#b7c0ca"/>
-          </radialGradient>
-          <linearGradient id="cardg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e7e9ec"/></linearGradient>
-          <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
-        </defs>
-        <!-- deck -->
-        <g transform="translate(640 120)">
-          <ellipse cx="150" cy="300" rx="190" ry="34" fill="#0b0b0c" opacity=".22" filter="url(#soft)"/>
-          <g transform="skewX(-14)">
-            <rect x="70" y="110" width="170" height="190" rx="10" fill="#d9dde2"/>
-            <rect x="70" y="100" width="170" height="190" rx="10" fill="#e6e9ec"/>
-            <rect x="70" y="90" width="170" height="190" rx="10" fill="#0b0b0c"/>
-            <rect x="82" y="102" width="146" height="166" rx="6" fill="none" stroke="#c6ff3d" stroke-width="2"/>
-            <use href="#s-spade" x="115" y="145" width="80" height="80" fill="#c6ff3d"/>
-          </g>
-        </g>
-        <!-- chip stacks -->
-        <g transform="translate(200 380)" class="art-chips" data-colors="#ff3d2e,#ff3d2e,#ff3d2e,#ff3d2e,#ff3d2e,#ff3d2e,#ff3d2e"></g>
-        <g transform="translate(330 420)" class="art-chips" data-colors="#0b0b0c,#0b0b0c,#0b0b0c,#0b0b0c,#0b0b0c,#0b0b0c,#0b0b0c,#0b0b0c,#0b0b0c,#0b0b0c"></g>
-        <g transform="translate(440 430)" class="art-chips" data-colors="#c6ff3d,#c6ff3d,#c6ff3d,#c6ff3d"></g>
-        <!-- hole cards -->
-        <g transform="translate(470 450) rotate(-12)">
-          <rect width="120" height="168" rx="10" fill="url(#cardg)" stroke="#0b0b0c" stroke-opacity=".15"/>
-          <text x="14" y="34" font-family="Archivo" font-weight="800" font-size="28">A</text>
-          <use href="#s-spade" x="30" y="54" width="60" height="60"/>
-        </g>
-        <g transform="translate(560 440) rotate(6)">
-          <rect width="120" height="168" rx="10" fill="url(#cardg)" stroke="#0b0b0c" stroke-opacity=".15"/>
-          <text x="14" y="34" font-family="Archivo" font-weight="800" font-size="28" fill="#ff3d2e">A</text>
-          <use href="#s-heart" x="30" y="54" width="60" height="60" fill="#ff3d2e"/>
-        </g>
-        <!-- dealer button -->
-        <g transform="translate(1000 460)">
-          <ellipse cx="0" cy="36" rx="84" ry="18" fill="#0b0b0c" opacity=".25" filter="url(#soft)"/>
-          <ellipse cx="0" cy="18" rx="80" ry="28" fill="#cfd4da"/>
-          <ellipse cx="0" cy="8" rx="80" ry="28" fill="#ffffff"/>
-          <text x="0" y="16" text-anchor="middle" font-family="Archivo" font-stretch="70%" font-weight="900" font-size="26" transform="scale(1 .62) translate(0 6)">DEALER</text>
-        </g>
-        <!-- cut card -->
-        <g transform="translate(120 560) rotate(-4)">
-          <rect width="420" height="26" rx="4" fill="#c6ff3d"/>
-          <rect y="22" width="420" height="6" rx="3" fill="#8bd100"/>
-        </g>
-        <!-- card protector -->
-        <g transform="translate(960 280)">
-          <ellipse cx="0" cy="22" rx="50" ry="12" fill="#0b0b0c" opacity=".2" filter="url(#soft)"/>
-          <ellipse cx="0" cy="12" rx="44" ry="16" fill="#8a929b"/>
-          <ellipse cx="0" cy="6" rx="44" ry="16" fill="#dfe3e7"/>
-          <use href="#s-diamond" x="-12" y="-4" width="24" height="20" fill="#ff3d2e"/>
-        </g>
-      </svg>
-      <div class="table__labels"></div>
-    </div>
-    <aside class="table__side">
-      <h2>ASSEMBLY<br>PROTOCOL</h2>
-      <ol class="table__list"></ol>
+    <aside class="set__side">
+      <h2 data-i18n="setSide">კომპლექტის სია</h2>
+      <ol class="set__list" data-set-list></ol>
+      <p class="set__total"><span data-i18n="setTotal">სულ</span><b data-set-total></b></p>
+      <button class="btn btn--lime" type="button" data-add-set data-i18n="setAdd">მთელი კომპლექტის დამატება</button>
     </aside>
   </section>
 
-  <!-- 07 HOW TO JOIN (flashlight) ------------------------------------ -->
-  <section class="join" id="join" data-rail data-sticky="3">
-    <div class="join__sticky" data-flash>
-      <h2 class="join__title">როგორ შემოგვიერთდე</h2>
-      <p class="hint join__hint-l">(scroll down)</p>
-      <p class="hint join__hint-r">(scroll down)</p>
-      <div class="join__visual">
-        <div class="fan fan--dim"></div>
-        <div class="fan fan--lit"></div>
+  <!-- How ordering works: flashlight over video -->
+  <section class="order" id="order" data-rail data-sticky="3">
+    <div class="order__sticky" data-flash>
+      <h2 class="order__title" data-i18n="orderTitle">როგორ შევუკვეთო</h2>
+      <p class="hint order__hint-l" data-i18n="scroll">(scroll down)</p>
+      <p class="hint order__hint-r" data-i18n="scroll">(scroll down)</p>
+      <div class="order__visual">
+        <video class="order__video order__video--dim" data-video src="assets/video/shuffle.mp4" poster="assets/video/shuffle.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+        <video class="order__video order__video--lit" data-video src="assets/video/shuffle.mp4" poster="assets/video/shuffle.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
       </div>
-      <p class="hint hint--center join__flash-hint">(მიიტანე კურსორი, რომ ჩართო ფანარი)</p>
-      <div class="join__step" aria-live="polite">
-        <p data-step-n>STEP 01</p>
-        <h3 data-step-t>რეგისტრაცია</h3>
-        <p data-step-d>დაგვირეკე ან შეავსე ფორმა. შეგირჩევთ სასურველ თამაშს და ლიმიტს.</p>
-      </div>
+      <p class="hint order__flash-hint" data-i18n="flash">(მიიტანე კურსორი, რომ ჩართო ფანარი)</p>
+      <ol class="order__steps">
+        <li class="is-on"><span>01</span><b data-i18n="s1t">აირჩიე</b><p data-i18n="s1d">დაამატე პროდუქტები კალათაში ან დაგვირეკე და დაგეხმარებით არჩევაში.</p></li>
+        <li><span>02</span><b data-i18n="s2t">შეუკვეთე</b><p data-i18n="s2d">დატოვე სახელი, ნომერი და მისამართი. 15 წუთში დაგირეკავთ დასადასტურებლად.</p></li>
+        <li><span>03</span><b data-i18n="s3t">მიიღე</b><p data-i18n="s3d">კურიერი მოგიტანს მეორე დღეს. გადაიხადე მიღებისას.</p></li>
+      </ol>
     </div>
-  </section>
-
-  <!-- 08 BOOK / FOOTER ----------------------------------------------- -->
-  <section class="book" id="book" data-rail>
-    <h2 class="book__title">შენი ადგილი<br><em>გელოდება.</em></h2>
-    <form class="book__form" novalidate>
-      <label><span>სახელი</span><input name="name" autocomplete="name" required placeholder="გიორგი"></label>
-      <label><span>ტელეფონი</span><input name="phone" type="tel" autocomplete="tel" required placeholder="+995 5__ __ __ __"></label>
-      <label><span>თამაში</span>
-        <select name="game">
-          <option>Texas Hold'em</option>
-          <option>Omaha PLO</option>
-          <option>ტურნირი</option>
-          <option>კერძო მაგიდა</option>
-        </select>
-      </label>
-      <label><span>თარიღი</span><input name="date" type="date"></label>
-      <button class="btn btn--lime btn--big" type="submit">ადგილის დაჯავშნა <span aria-hidden="true">→</span></button>
-      <p class="book__msg" role="status"></p>
-    </form>
   </section>
 
 </main>
 
-<footer class="foot">
-  <div class="foot__brand">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#s-spade"/></svg>
-    <b>MYPOKER</b>
+<footer class="foot" data-rail>
+  <div class="foot__big">
+    <p class="foot__word" data-i18n="footWord">ყველაფერი მაგიდისთვის.</p>
+    <a class="btn btn--lime btn--big" href="tel:+995555123456">+995 555 12 34 56</a>
   </div>
-  <div>
-    <p class="foot__label">მისამართი</p>
-    <p>თბილისი, საქართველო</p>
+  <div class="foot__cols">
+    <div>
+      <p class="foot__label" data-i18n="fCats">კატეგორიები</p>
+      <ul data-foot-cats></ul>
+    </div>
+    <div>
+      <p class="foot__label" data-i18n="fContact">კონტაქტი</p>
+      <ul>
+        <li><a href="tel:+995555123456">+995 555 12 34 56</a></li>
+        <li><a href="mailto:info@mypoker.ge">info@mypoker.ge</a></li>
+        <li data-i18n="fCity">თბილისი, საქართველო</li>
+      </ul>
+    </div>
+    <div>
+      <p class="foot__label" data-i18n="fHours">სამუშაო საათები</p>
+      <ul>
+        <li data-i18n="fHours1">ორშაბათი–შაბათი, 10:00–20:00</li>
+        <li data-i18n="fHours2">კვირა, 11:00–18:00</li>
+      </ul>
+    </div>
   </div>
-  <div>
-    <p class="foot__label">კონტაქტი</p>
-    <p><a href="mailto:info@mypoker.ge">info@mypoker.ge</a></p>
-  </div>
-  <div>
-    <p class="foot__label">სოციალური</p>
-    <p><a href="#">Facebook</a> · <a href="#">Instagram</a></p>
-  </div>
-  <p class="foot__legal">18+ · ითამაშე პასუხისმგებლობით. აზარტული თამაში შეიძლება იწვევდეს დამოკიდებულებას. © <span data-year>2026</span> MyPoker.</p>
+  <p class="foot__legal">© <span data-year>2026</span> mypoker.ge</p>
 </footer>
 
+<!-- Cart drawer -->
+<div class="scrim" data-scrim hidden></div>
+<aside class="cart" data-cart aria-label="კალათა" aria-hidden="true" tabindex="-1">
+  <header class="cart__head">
+    <h2 data-i18n="cart">კალათა</h2>
+    <button class="icon-btn" type="button" data-close-cart aria-label="დახურვა"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </header>
+  <div class="cart__free">
+    <p data-free-text></p>
+    <div class="cart__bar"><i data-free-bar></i></div>
+  </div>
+  <ul class="cart__items" data-cart-items></ul>
+  <div class="cart__empty" data-cart-empty>
+    <p data-i18n="cartEmpty">კალათა ცარიელია.</p>
+    <a class="btn btn--line" href="#shop" data-close-cart data-i18n="toShop">კატალოგის ნახვა</a>
+  </div>
+  <form class="cart__form" data-checkout hidden novalidate>
+    <label><span data-i18n="fName">სახელი</span><input name="name" autocomplete="name" required></label>
+    <label><span data-i18n="fPhone">ტელეფონი</span><input name="phone" type="tel" autocomplete="tel" required placeholder="+995 5__ __ __ __"></label>
+    <label><span data-i18n="fAddr">მისამართი</span><input name="addr" autocomplete="street-address" required></label>
+    <p class="cart__err" data-err role="alert"></p>
+  </form>
+  <footer class="cart__foot" data-cart-foot hidden>
+    <p class="cart__sum"><span data-i18n="total">ჯამი</span><b data-cart-total>0 ₾</b></p>
+    <button class="btn btn--lime btn--big" type="button" data-checkout-btn data-i18n="checkout">შეკვეთის გაფორმება</button>
+  </footer>
+  <div class="cart__done" data-done hidden>
+    <p class="cart__done-title" data-i18n="doneTitle">შეკვეთა მიღებულია.</p>
+    <p data-i18n="doneText">15 წუთში დაგირეკავთ დასადასტურებლად.</p>
+  </div>
+</aside>
+
+<p class="toast" data-toast role="status" aria-live="polite"></p>
+
+<script src="js/products.js"></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>
