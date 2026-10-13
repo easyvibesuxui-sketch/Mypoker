@@ -38,6 +38,9 @@
     x: "<path d=\"M18 6l-12 12\"/><path d=\"M6 6l12 12\"/>",
   };
   const svg = (body, cls = "") => `<svg${cls ? ` class="${cls}"` : ""} viewBox="0 0 24 24" aria-hidden="true">${body}</svg>`;
+  /* simple use tags on cards: which game or occasion a product is for */
+  const TAGS = { poker: ["პოკერი", "Poker"], joker: ["ჯოკერი", "Joker"], blackjack: ["ბლექჯეკი", "Blackjack"], casino: ["კაზინო", "Casino"], players8: ["8 მოთამაშე", "8 players"], foldable: ["დასაკეცი", "Foldable"], gift: ["საჩუქარი", "Gift"], nardi: ["ნარდი", "Backgammon"], domino: ["დომინო", "Domino"], chess: ["ჭადრაკი", "Chess"], family: ["ოჯახი", "Family"], friends: ["მეგობრები", "Friends"] };
+  const tagLabel = (k) => (TAGS[k] ? TAGS[k][MP.lang === "en" ? 1 : 0] : k);
   const tabLabel = (id) => (TAB[id] ? TAB[id][MP.lang === "en" ? 1 : 0] : id);
 
   const PRICE = [[0, Infinity], [0, 50], [50, 200], [200, 500], [500, Infinity]];
@@ -80,7 +83,7 @@
     grid.innerHTML = order.map((p) => {
       const sale = p.old ? Math.round((1 - p.price / p.old) * 100) : 0;
       const badges = [p.badge ? `<span class="badge">${MP.t(BADGE[p.badge])}</span>` : "", sale ? `<span class="badge badge--sale">-${sale}%</span>` : ""].join("");
-      const tags = [`<span class="tag tag--cat">${MP.cname(p.cat)}</span>`, ...p.spec.split(",").slice(0, 2).map((t) => `<span class="tag">${t.trim()}</span>`)].join("");
+      const tags = (p.tags || []).slice(0, 3).map((k) => `<span class="tag">${tagLabel(k)}</span>`).join("");
       const inCart = MP.cart.has(p.id);
       return `<li class="tile" data-id="${p.id}" tabindex="0" aria-label="${MP.pname(p)}">
         <div class="tile__img"><div class="tile__badges">${badges}</div><img src="${img(p.id)}" alt="${MP.pname(p)}" loading="lazy" width="800" height="800">
@@ -97,7 +100,7 @@
   function visibleList() {
     const q = state.q.trim().toLowerCase();
     const [lo, hi] = PRICE[state.price];
-    let list = order.filter((p) => inCat(p, state.cat) && p.price >= lo && p.price < hi && [...state.flags].every((f) => FLAGS[f].test(p)) && (!q || `${p.name} ${p.en} ${p.short} ${p.shortEn} ${p.spec}`.toLowerCase().includes(q)));
+    let list = order.filter((p) => inCat(p, state.cat) && p.price >= lo && p.price < hi && [...state.flags].every((f) => FLAGS[f].test(p)) && (!q || `${p.name} ${p.en} ${p.short} ${p.shortEn} ${p.spec} ${(p.tags || []).map((k) => TAGS[k]?.join(" ")).join(" ")}`.toLowerCase().includes(q)));
     if (state.sort === "asc") list = [...list].sort((a, b) => a.price - b.price);
     if (state.sort === "desc") list = [...list].sort((a, b) => b.price - a.price);
     return list;

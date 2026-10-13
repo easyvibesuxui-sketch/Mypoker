@@ -93,8 +93,7 @@
 .tile__name { font-size: 15px; font-weight: 600; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tile__meta { font-size: 14px; line-height: 1.4; color: #6d7169; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tile__tags { display: flex; flex-wrap: wrap; gap: 6px; height: 24px; margin-top: 8px; overflow: hidden; }
-.tag { flex: 0 0 auto; max-width: 100%; padding: 3px 10px; border-radius: 999px; background: #ecede6; color: #4d5149; font-size: 12px; font-weight: 500; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tag--cat { background: #e3e7d3; color: var(--olive-ink); }
+.tag { flex: 0 0 auto; padding: 2px 10px; border: 1px solid #dedfd9; border-radius: 999px; color: #5d615a; font-size: 12px; line-height: 1.5; white-space: nowrap; }
 .tile__price { margin-top: 10px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; font-size: 15px; }
 .tile__price s { color: #6d7169; }
 .tile__price b { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
@@ -155,8 +154,7 @@
   .tile__add svg { width: 17px; height: 17px; }
   .tile__name { font-size: 14px; }
   .tile__meta, .tile__price { font-size: 13px; }
-  .tag { font-size: 11px; padding: 2px 8px; }
-  .tag:not(.tag--cat) { display: none; }
+  .tag { font-size: 11px; padding: 1px 8px; }
   .fdlg { padding: 0; align-items: end; }
   .fdlg__box { width: 100%; max-height: 92svh; border-radius: 16px 16px 0 0; }
   .fsec__checks { grid-template-columns: 1fr; }
