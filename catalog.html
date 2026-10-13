@@ -18,7 +18,7 @@
 
 <header class="hud">
   <a class="hud__logo" href="./" aria-label="mypoker.ge"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 86 50 50 96 14 50Z"/></svg><span>MYPOKER<b>.GE</b></span></a>
-  <a class="hud__cat" href="catalog.html" aria-current="page"><span data-t="catalog">კატალოგი</span><sup>17</sup></a>
+  <a class="hud__cat" href="catalog.html" aria-current="page"><span data-t="catalog">კატალოგი</span></a>
   <div class="hud__end">
     <span class="hud__lang"><button type="button" data-lang="ka">ქარ</button><button type="button" data-lang="en">EN</button></span>
     <button class="hud__cart" type="button" data-open-cart aria-label="Cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.2l2.1 10.4a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.1M9.5 20.2h.01M17 20.2h.01"/></svg><b data-cart-n>0</b></button>
@@ -28,26 +28,42 @@
 
 <main>
   <header class="chead">
-    <h1 class="tri d"><span>Full</span><span>Catalog</span><span data-total>17.</span></h1>
+    <div class="chead__txt">
+      <h1 class="chead__h d" data-t="catalog">კატალოგი</h1>
+      <p class="chead__lead" data-t="catLead">პოკერის აღჭურვილობა და სამაგიდო თამაშები. მიწოდება თბილისში მეორე დღეს.</p>
+    </div>
   </header>
 
   <div class="bar" data-bar>
-    <nav class="bar__cats mono" data-cats aria-label="კატეგორიები"></nav>
-    <div class="bar__row mono">
-      <div class="bar__prices" data-prices role="radiogroup" aria-label="ფასი"></div>
-      <label class="bar__search"><span class="sr" data-t="search">ძებნა</span><input type="search" data-search autocomplete="off" placeholder="(search)"></label>
-      <label class="bar__sort"><span class="sr">Sort</span>
+    <nav class="bar__cats" data-cats aria-label="კატეგორიები"></nav>
+    <div class="bar__tools">
+      <label class="bar__search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <span class="sr" data-t="search">ძებნა</span>
+        <input type="search" data-search autocomplete="off" placeholder="მოძებნე პროდუქტი">
+        <kbd aria-hidden="true">/</kbd>
+      </label>
+      <div class="bar__filter">
+        <button type="button" class="bar__btn" data-price-btn aria-expanded="false" aria-controls="price-pop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+          <span data-t="fPrice">ფასი</span><b data-price-cur></b>
+        </button>
+        <div class="pop" id="price-pop" data-prices role="radiogroup" aria-label="ფასი" hidden></div>
+      </div>
+      <label class="bar__sort"><span data-t="sortBy">დალაგება</span>
         <select data-sort>
           <option value="rec" data-t="sortRec">რეკომენდებული</option>
           <option value="asc" data-t="sortAsc">ფასი ↑</option>
           <option value="desc" data-t="sortDesc">ფასი ↓</option>
         </select>
       </label>
-      <p class="bar__count" data-count>(17/17)</p>
+      <p class="bar__count" data-count aria-live="polite"></p>
     </div>
+    <div class="bar__active" data-active hidden></div>
   </div>
 
   <ul class="grid" id="grid" data-grid></ul>
+  <p class="grid__foot" data-foot></p>
   <div class="empty" data-empty hidden>
     <p class="d" data-t="emptyTitle">ვერაფერი მოიძებნა.</p>
     <button class="paren" type="button" data-reset data-t="emptyReset">ფილტრების გასუფთავება</button>

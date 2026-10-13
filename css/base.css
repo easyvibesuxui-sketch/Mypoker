@@ -78,29 +78,25 @@ button { cursor: pointer; }
 .hud__cat {
   position: relative;
   display: inline-flex;
-  align-items: flex-start;
-  gap: 4px;
-  height: 46px;
-  padding: 0 30px;
   align-items: center;
-  background: var(--lime);
-  color: var(--ink);
+  height: 46px;
+  padding: 0 6px;
+  background: none;
+  color: var(--hud-fg);
   text-decoration: none;
   font-family: var(--f-display);
   font-stretch: 70%;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 26px;
   letter-spacing: .02em;
-  box-shadow: 0 0 0 1px var(--ink);
-  transition: background-color var(--m-150) var(--ease-out), color var(--m-150) var(--ease-out), transform var(--m-150) var(--ease-out);
+  transition: color var(--m-200) var(--ease-out), transform var(--m-150) var(--ease-out);
 }
-.hud__cat sup { align-self: flex-start; margin-top: 8px; font-family: var(--f-mono); font-size: 10px; font-weight: 500; }
-.hud__cat:hover { background: var(--ink); color: var(--lime); }
+.hud__cat::after { content: ""; position: absolute; left: 6px; right: 6px; bottom: 7px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform var(--m-300) var(--ease-out); }
+.hud__cat:hover::after, .hud__cat[aria-current="page"]::after { transform: scaleX(1); }
 .hud__cat:active { transform: scale(.98); }
-.hud__cat[aria-current="page"]::after { content: ""; position: absolute; left: 30px; right: 30px; bottom: 8px; height: 2px; background: currentColor; }
 .hud__end { justify-self: end; display: flex; align-items: center; gap: 6px; }
-.hud__logo, .hud__lang, .hud__cart { --hud-acc: var(--olive); --hud-fg: var(--ink); --hud-dim: rgba(0, 0, 0, .45); text-shadow: 0 0 6px rgba(255, 255, 255, .9), 0 0 2px rgba(255, 255, 255, .9); }
-.hud__logo.is-dark, .hud__lang.is-dark, .hud__cart.is-dark { --hud-acc: var(--lime); --hud-fg: #fff; --hud-dim: rgba(255, 255, 255, .5); text-shadow: 0 0 6px rgba(0, 0, 0, .9), 0 0 2px rgba(0, 0, 0, .9); }
+.hud__logo, .hud__cat, .hud__lang, .hud__cart { --hud-acc: var(--olive); --hud-fg: var(--ink); --hud-dim: rgba(0, 0, 0, .45); text-shadow: 0 0 6px rgba(255, 255, 255, .9), 0 0 2px rgba(255, 255, 255, .9); }
+.hud__logo.is-dark, .hud__cat.is-dark, .hud__lang.is-dark, .hud__cart.is-dark { --hud-acc: var(--lime); --hud-fg: #fff; --hud-dim: rgba(255, 255, 255, .5); text-shadow: 0 0 6px rgba(0, 0, 0, .9), 0 0 2px rgba(0, 0, 0, .9); }
 .hud__cart svg { filter: drop-shadow(0 0 3px rgba(255, 255, 255, .8)); }
 .hud__cart.is-dark svg { filter: drop-shadow(0 0 3px rgba(0, 0, 0, .8)); }
 .hud__lang { display: flex; height: 38px; align-items: center; }
@@ -177,8 +173,8 @@ button { cursor: pointer; }
   .hud { gap: 6px; padding: 8px; }
   .hud__logo { height: 36px; padding: 0 2px; font-size: 16px; }
   .hud__logo b, .hud__lang { display: none; }
-  .hud__cat { height: 40px; padding: 0 14px; font-size: 18px; }
-  .hud__cat[aria-current="page"]::after { left: 14px; right: 14px; bottom: 6px; }
+  .hud__cat { height: 40px; padding: 0 4px; font-size: 21px; }
+  .hud__cat::after { left: 4px; right: 4px; bottom: 6px; }
   .hud__cart { height: 36px; padding: 0 8px; }
   .hud__call { height: 40px; width: 40px; padding: 0; justify-content: center; }
   .hud__call span { display: none; }
