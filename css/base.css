@@ -104,7 +104,7 @@ button { cursor: pointer; }
 .hud__lang button.is-on { color: var(--hud-fg); text-decoration: underline; text-underline-offset: 4px; }
 .hud__lang button:hover { color: var(--hud-fg); }
 .hud__cart { position: relative; display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 8px; border: 0; background: none; color: var(--hud-fg); font-family: var(--f-mono); font-size: 13px; font-weight: 500; transition: color var(--m-200) var(--ease-out); }
-.hud__cart svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.hud__cart svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .hud__cart b { font-weight: 500; min-width: 1ch; }
 .hud__cart:hover { opacity: .7; }
 .hud__call { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 16px 0 6px; background: var(--red); color: #fff; text-decoration: none; font-family: var(--f-mono); font-size: 14px; font-weight: 500; letter-spacing: .02em; line-height: 1.15; box-shadow: 0 10px 30px -12px rgba(200, 48, 60, .5); transition: background-color var(--m-150) var(--ease-out); }
