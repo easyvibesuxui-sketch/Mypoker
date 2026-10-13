@@ -30,6 +30,13 @@ jobs:
           mkdir _site
           cp -r index.html catalog.html css js assets _site/
           touch _site/.nojekyll
+      - name: Version CSS and JS links
+        # Pages lets browsers cache assets for 10 minutes; a per-deploy query string
+        # stops a fresh page from running against last deploy's stylesheet or script.
+        run: |
+          v="${GITHUB_SHA::7}"
+          sed -i -E "s#(href|src)=\"((css|js|assets/vendor)/[^\"?]+\.(css|js))\"#\1=\"\2?v=$v\"#g" _site/*.html
+          grep -c "?v=$v" _site/index.html _site/catalog.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
