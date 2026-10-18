@@ -93,18 +93,19 @@
 <!-- product quick view -->
 <div class="qv" data-qv hidden role="dialog" aria-modal="true" aria-labelledby="qv-name">
   <div class="qv__box">
-    <button class="paren qv__x" type="button" data-qv-close>close</button>
-    <div class="qv__img"><i></i><i></i><i></i><i></i><img data-qv-img alt=""></div>
+    <button class="qv__x" type="button" data-qv-close aria-label="close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg></button>
+    <div class="qv__img"><div class="qv__badges" data-qv-badges></div><img data-qv-img alt=""></div>
     <div class="qv__info">
-      <p class="mono qv__fig" data-qv-fig></p>
+      <p class="qv__cat" data-qv-fig></p>
       <h2 class="qv__name" id="qv-name" data-qv-name></h2>
-      <p class="mono qv__spec" data-qv-spec></p>
-      <p class="qv__price d" data-qv-price></p>
+      <div class="qv__tags" data-qv-tags></div>
+      <p class="qv__spec" data-qv-spec></p>
+      <p class="qv__price" data-qv-price></p>
       <div class="qv__actions">
-        <button class="btn btn--lime btn--big" type="button" data-qv-add data-t="add">კალათაში</button>
-        <a class="btn btn--line btn--big" href="tel:+995555123456" data-t="call">დარეკვა</a>
+        <button class="qv__add" type="button" data-qv-add><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M12.5 17h-6.5v-14h-2"/><path d="M6 5l14 1l-.86 6.017m-2.64 .983h-10.5"/><path d="M16 19h6"/><path d="M19 16v6"/></svg><span data-qv-add-label>კალათაში დამატება</span></button>
+        <a class="qv__call" href="tel:+995555123456"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></svg><span data-t="call">დარეკვა</span></a>
       </div>
-      <p class="mono qv__note" data-t="qvNote">მიწოდება თბილისში მეორე დღეს. გადახდა მიღებისას.</p>
+      <p class="qv__note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"/><path d="M3 9l4 0"/></svg><span data-t="qvNote">მიწოდება თბილისში მეორე დღეს. გადახდა მიღებისას.</span></p>
     </div>
   </div>
 </div>

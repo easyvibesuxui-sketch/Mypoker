@@ -143,7 +143,7 @@
   MP.add = (id, n = 1, silent) => {
     cart.set(id, (cart.get(id) || 0) + n);
     save(); renderCart();
-    if (!silent) MP.toast(MP.t("inCart", MP.pname(byId[id])));
+    if (!silent) MP.toast(MP.t("inCart", MP.sname(byId[id])));
     document.dispatchEvent(new CustomEvent("cart:change"));
   };
   function renderCart() {

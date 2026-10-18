@@ -9,8 +9,8 @@
   if (hasFlip) gsap.registerPlugin(Flip);
 
   MP.extendT({
-    ka: { home: "მთავარი", search: "ძებნა", searchPh: "მოძებნე პროდუქტი", catLead: "პოკერის აღჭურვილობა და სამაგიდო თამაშები. მიწოდება თბილისში მეორე დღეს.", filters: "ფილტრები", fPrice: "ფასი", fSpecial: "შეთავაზებები", sortBy: "დალაგება", sortRec: "რეკომენდებული", sortAsc: "ჯერ იაფი", sortDesc: "ჯერ ძვირი", emptyTitle: "ვერაფერი მოიძებნა.", emptyReset: "ფილტრების გასუფთავება", call: "დარეკვა", qvNote: "მიწოდება თბილისში მეორე დღეს. გადახდა მიღებისას.", ship: "უფასო მიწოდება თბილისში 80 ₾-დან", all: "ყველა", p0: "ნებისმიერი", p1: "50 ₾-მდე", p2: "50–200 ₾", p3: "200–500 ₾", p4: "500 ₾+", badgeNew: "ახალი", badgeBest: "ბესტსელერი", badgePrem: "პრემიუმი", qSale: "ფასდაკლებით", qFree: "უფასო მიწოდებით", nProducts: (n) => `${n} პროდუქტი`, nAll: (n) => `ყველა ${n} პროდუქტი`, showN: (n) => `ნახე ${n} პროდუქტი`, shown: (a, b) => `ნაჩვენებია ${a} / ${b}`, clearAll: "ყველაფრის გასუფთავება", clear: "გასუფთავება", addTo: (n) => `კალათაში დამატება: ${n}` },
-    en: { home: "Home", search: "Search", searchPh: "Search products", catLead: "Poker equipment and board games. Next-day delivery in Tbilisi.", filters: "Filters", fPrice: "Price", fSpecial: "Offers", sortBy: "Sort by", sortRec: "Recommended", sortAsc: "Lowest price", sortDesc: "Highest price", emptyTitle: "Nothing matches.", emptyReset: "Clear filters", call: "Call", qvNote: "Next-day delivery in Tbilisi. Pay on delivery.", ship: "Free delivery in Tbilisi from 80 ₾", all: "All", p0: "Any", p1: "Under 50 ₾", p2: "50–200 ₾", p3: "200–500 ₾", p4: "500 ₾+", badgeNew: "New", badgeBest: "Bestseller", badgePrem: "Premium", qSale: "On sale", qFree: "Free delivery", nProducts: (n) => `${n} ${n === 1 ? "product" : "products"}`, nAll: (n) => `All ${n} products`, showN: (n) => `Show ${n} ${n === 1 ? "product" : "products"}`, shown: (a, b) => `Showing ${a} of ${b}`, clearAll: "Clear all", clear: "Clear all", addTo: (n) => `Add to cart: ${n}` },
+    ka: { home: "მთავარი", search: "ძებნა", searchPh: "მოძებნე პროდუქტი", catLead: "პოკერის აღჭურვილობა და სამაგიდო თამაშები. მიწოდება თბილისში მეორე დღეს.", filters: "ფილტრები", fPrice: "ფასი", fSpecial: "შეთავაზებები", sortBy: "დალაგება", sortRec: "რეკომენდებული", sortAsc: "ჯერ იაფი", sortDesc: "ჯერ ძვირი", emptyTitle: "ვერაფერი მოიძებნა.", emptyReset: "ფილტრების გასუფთავება", call: "დარეკვა", qvNote: "მიწოდება თბილისში მეორე დღეს. გადახდა მიღებისას.", ship: "უფასო მიწოდება თბილისში 80 ₾-დან", all: "ყველა", p0: "ნებისმიერი", p1: "50 ₾-მდე", p2: "50–200 ₾", p3: "200–500 ₾", p4: "500 ₾+", badgeNew: "ახალი", badgeBest: "ბესტსელერი", badgePrem: "პრემიუმი", qSale: "ფასდაკლებით", qFree: "უფასო მიწოდებით", nProducts: (n) => `${n} პროდუქტი`, nAll: (n) => `ყველა ${n} პროდუქტი`, showN: (n) => `ნახე ${n} პროდუქტი`, shown: (a, b) => `ნაჩვენებია ${a} / ${b}`, clearAll: "ყველაფრის გასუფთავება", clear: "გასუფთავება", addTo: (n) => `კალათაში დამატება: ${n}`, addBtn: "კალათაში დამატება", inCartBtn: "კალათაშია" },
+    en: { home: "Home", search: "Search", searchPh: "Search products", catLead: "Poker equipment and board games. Next-day delivery in Tbilisi.", filters: "Filters", fPrice: "Price", fSpecial: "Offers", sortBy: "Sort by", sortRec: "Recommended", sortAsc: "Lowest price", sortDesc: "Highest price", emptyTitle: "Nothing matches.", emptyReset: "Clear filters", call: "Call", qvNote: "Next-day delivery in Tbilisi. Pay on delivery.", ship: "Free delivery in Tbilisi from 80 ₾", all: "All", p0: "Any", p1: "Under 50 ₾", p2: "50–200 ₾", p3: "200–500 ₾", p4: "500 ₾+", badgeNew: "New", badgeBest: "Bestseller", badgePrem: "Premium", qSale: "On sale", qFree: "Free delivery", nProducts: (n) => `${n} ${n === 1 ? "product" : "products"}`, nAll: (n) => `All ${n} products`, showN: (n) => `Show ${n} ${n === 1 ? "product" : "products"}`, shown: (a, b) => `Showing ${a} of ${b}`, clearAll: "Clear all", clear: "Clear all", addTo: (n) => `Add to cart: ${n}`, addBtn: "Add to cart", inCartBtn: "In your cart" },
   });
   const BADGE = { "ახალი": "badgeNew", "ბესტსელერი": "badgeBest", "პრემიუმი": "badgePrem" };
 
@@ -177,21 +177,37 @@
     if (e.key === "Escape" && !dlg.hidden) closeDlg();
     if (e.key === "/" && !e.target.closest("input, textarea, select")) { e.preventDefault(); $("[data-search]").focus(); }
   });
-  document.addEventListener("cart:change", () => $$(".tile__add").forEach((b) => b.classList.toggle("is-in", MP.cart.has(b.dataset.add))));
+  document.addEventListener("cart:change", () => {
+    $$(".tile__add").forEach((b) => b.classList.toggle("is-in", MP.cart.has(b.dataset.add)));
+    if (!qv.hidden) qvAddState();
+  });
 
   /* quick view */
   const qv = $("[data-qv]");
   let qvLast = null;
+  function qvAddState() {
+    const btn = $("[data-qv-add]");
+    const inCart = MP.cart.has(btn.dataset.add);
+    btn.classList.toggle("is-in", inCart);
+    $("[data-qv-add-label]").textContent = inCart ? MP.t("inCartBtn") : MP.t("addBtn");
+    btn.firstElementChild.outerHTML = svg(inCart ? ICON.cartIn : ICON.cartAdd);
+  }
   function openQV(id) {
     const p = byId[id];
+    const sale = p.old ? Math.round((1 - p.price / p.old) * 100) : 0;
     qvLast = document.activeElement;
     $("[data-qv-img]").src = img(id);
     $("[data-qv-img]").alt = MP.pname(p);
+    $("[data-qv-badges]").innerHTML = [p.badge ? `<span class="badge">${MP.t(BADGE[p.badge])}</span>` : "", sale ? `<span class="badge badge--sale">-${sale}%</span>` : ""].join("");
     $("[data-qv-fig]").textContent = MP.cname(p.cat);
     $("[data-qv-name]").textContent = MP.pname(p);
+    $("[data-qv-tags]").innerHTML = (p.tags || []).map((k) => `<span class="tag">${tagLabel(k)}</span>`).join("");
     $("[data-qv-spec]").textContent = p.spec;
-    $("[data-qv-price]").textContent = money(p.price);
+    const pr = $("[data-qv-price]");
+    pr.classList.toggle("is-sale", !!sale);
+    pr.innerHTML = `<b>${money(p.price)}</b>${p.old ? `<s>${money(p.old)}</s>` : ""}`;
     $("[data-qv-add]").dataset.add = id;
+    qvAddState();
     qv.hidden = false;
     requestAnimationFrame(() => qv.classList.add("is-on"));
     MP.lenis?.stop();
